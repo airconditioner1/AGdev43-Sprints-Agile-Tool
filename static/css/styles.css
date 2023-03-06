@@ -1,0 +1,135 @@
+/*********************HTML TAG Selector*************/
+
+/** initialize the page **/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/** Use flex box to make container center vertically and horizontally **/
+body,html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+input {
+    outline: none;
+    width: 70%;
+    padding: 16px 20px;
+    border: none;
+    background-color: #f1f1f1;
+    margin-bottom: -1px;
+}
+
+
+
+/*******************CLASS Selector*******************/
+.box{
+    position: relative;
+    background-color: #537FE7;
+    width: 80%;
+    height: 50%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+}
+
+.container-button{
+    margin-top: 10px;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    color: white
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.overlay {
+    background: #FCFFE7;
+    width: 200%;
+    height: 100%;
+    left: -100%;
+    position: relative;
+    transition: all 0.6s ease-in-out;
+    color: grey;
+}
+.overlay-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+.overlay-right {
+    right: 0;
+}
+
+
+/*******************ID Selector*****************/
+
+
+
+
+/***** animation class selector ********/
+
+.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.right-panel-active .sign-up-container {
+    z-index: 99;
+    opacity: 1;
+    transform: translateX(100%);
+}
+
+.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+
+
+
+
+
