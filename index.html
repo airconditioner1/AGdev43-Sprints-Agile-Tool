@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <!--Import CSS and JS-->
-     <link rel="stylesheet" type="text/css" href="static/css/styles.css">
-    <script src="static/js/index.js" async></script>
+
+    <link rel="stylesheet" href="static/css/styles.css">
 
     <!--Import FontAwesome-->
     <script src="https://kit.fontawesome.com/1acefeb032.js" crossorigin="anonymous"></script>
@@ -19,22 +18,45 @@
         <div class="form-container sign-up-container">
             <!--Sign Up Container-->
            <form>
-            <h1>Sign up</h1>
-            <input type="text" placeholder="username" required> 
-            <input type="password" placeholder="password" required>
-            <input type="email" placeholder="email" required>
-            <button class="container-button btn btn-light">Sign up</button>
+                <h1>Sign up</h1>
+                <div class="form-floating" style="width:70%">
+                    <input type="text" class="form-control top" id="floatingPassword" placeholder="First Name" required autofocus>
+                    <label style="color: darkgray">First Name</label>
+                </div>
+
+                <div class="form-floating" style="width:70%">
+                    <input type="text" class="form-control middle" id="floatingPassword" placeholder="Last Name" required>
+                    <label style="color: darkgray">Last Name</label>
+                </div>
+
+                <div class="form-floating" style="width:70%">
+                    <input type="email" class="form-control bottom" id="floatingInput" placeholder="name@example.com" required>
+                    <label style="color: darkgray">Email</label>
+                </div>
+
+                <button class="container-button btn btn-light">Sign up</button>
            </form>
         </div>
 
        <div class="form-container sign-in-container">
             <!--Sign Up Container-->
            <form>
-            <h1>Sign in</h1>
-            <input type="text" placeholder="username"  required autofocus>
-            <input type="password" placeholder="password" required>
-            <button class="container-button btn btn-light">Sign in</button>
-            <a href="/login" style="color: white;"><i class="fa-brands fa-google"></i></a>
+                <h1>Sign in</h1>
+                <div class="form-floating" style="width:70%">
+                    <input type="text" class="form-control top" id="floatingPassword" placeholder="First Name" required autofocus>
+                    <label style="color: darkgray">First Name</label>
+                </div>
+
+                <div class="form-floating" style="width:70%">
+                    <input type="text" class="form-control middle" id="floatingPassword" placeholder="Last Name" required>
+                    <label style="color: darkgray">Last Name</label>
+                </div>
+                <button class="container-button btn btn-light">Sign in</button>
+
+                <a class="btn btn-light login-button" href="/login" role="button" style="text-transform:none">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Login with Google
+                </a>
            </form>
         </div>
 
@@ -55,6 +77,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const container = document.querySelector('.box');
+        const signInButton = document.querySelector('#sign-in-button');
+        const signUpButton = document.querySelector('#sign-up-button');
+
+        signUpButton.addEventListener('click', () => container.classList.add
+        ('right-panel-active'));
+        signInButton.addEventListener('click', () => container.classList.remove
+        ('right-panel-active'));
+    </script>
+
 </body>
 
 </html>
