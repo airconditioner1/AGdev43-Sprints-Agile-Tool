@@ -4,7 +4,7 @@ pip install mysql-connector-python
 
 In a different tab, run 
 
-ssh -L localhost:03306:localhost:03306 samyak@cs506-team-43.cs.wisc.edu
+ssh -L localhost:03306:localhost:03306 cslusername@cs506-team-43.cs.wisc.edu
 
 	Replace USERNAME with your csl login username. Enter your csl password and dual
 	authenticate.
