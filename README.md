@@ -1,138 +1,70 @@
-How to Access data from this Database <3
-Make sure you have the mysql-connector package. If you don't, run 
-pip install mysql-connector-python
+# Getting Started with Create React App
 
-In a different tab, run 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-ssh -L localhost:03306:localhost:03306 cslusername@cs506-team-43.cs.wisc.edu
+## Available Scripts
 
-	Replace USERNAME with your csl login username. Enter your csl password and dual
-	authenticate.
+In the project directory, you can run:
 
-Look at the Queries section in this doc as well as the main function in the sql-connect.py file to understand how to access data. I’d recommend not sending in your own query, but rather asking me to implement it.
+### `npm start`
 
-Queries 
-The functions are added to the class directly for simplicity and function signatures are given. Black ones are complete. 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-When sending queries to add new rows (7-11), remember that everything that is not null in the schema (above) HAS to be sent in as args. 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-I’ve added a non exhaustive list of checks to some of the queries. DO THESE CHECKS BEFORE SENDING IN DATA.
+### `npm test`
 
-Send in your own query
-def execute_query(self, query):
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Get all cards in a project
-def all_cards_by_proj(self, pnum):
+### `npm run build`
 
-Get all tasks in a project (different because cards demand a subset of all the task attributes)
-Get all users on a task
-Get all users in a project
-Get all tasks in a project by status
-Create new task
-	Check if pnum exists before creating a task
-Create new user
-Assign user to task
-	Stop users from assigning themselves to tasks they’re not on the team for
-	Check if users exist before assigning
-Create new project (this is done by assigning a name to the project)
-Assign users to the project (added to the “team” table)
-	Check if users exist before adding to team
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-ER Model
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Quick Explanation of ER models
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Model of our database
+## Learn More
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Tables
+### Code Splitting
 
-Task/Card
-TaskNum
-PNum
-Title
-Desc
-DueDate
-Hours
-Priority
-Status
-1
-1
-Research
-…
-3/4/23
-3
-low
-Unassigned
-2
-1
-Read chptr
-…
-3/7/23
-1
-medium
-InProgress
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
+### Analyzing the Bundle Size
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Project
-PNum
-Name
-1
-AGDev43
-2
-WebsiteCreation
+### Making a Progressive Web App
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
+### Advanced Configuration
 
-User
-Email
-Username
-abc@gmail.com
-abc
-def@gmail.com
-def
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
+### Deployment
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-Team
-Email
-PNum
-abc@gmail.com
-1
-def@gmail.com
-1
+### `npm run build` fails to minify
 
-	
-
-Assigned
-Email
-TaskNum
-abc@gmail.com
-1
-def@gmail.com
-2
-
-
-Schema
-
-
-
-
-
-
-Required Edits/Questions (only for Cas)
-IsPrioritised->Priority (low, med, high)
-Tables with no primary key??
-Sprint numbers!!!
-Date created
-Createdby
-Autoincrement
-Improve query strings
-How do errors return?
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
