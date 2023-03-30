@@ -182,7 +182,7 @@
         <h1 class="h2">Taskboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button id="btn-createATask" type="button" class="btn btn-sm btn-outline-secondary btn-createATask" onclick="createATask()">Create a Task</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
@@ -193,27 +193,39 @@
       </div>
       <div id="createATask" class="box-createATask">
         <p1 id="Hello">Hello world</p1>
-        <button id="btn-createATask" class="btn-createATask" onclick="createATask()">Create a Task</button>
         <div id="box-taskForm" class="box-taskForm">          
-          <form>
+          <form id="taskForm" method="post">
             <br><label for="title">Task Title:</label><br>
             <input class="taskInput" type="text" id="title" name="title" placeholder="type your task..."/><br>
             <label for="time">Hours To Complete:</label><br>
-            <select name="languages" id="lang">
-              <option value="javascript">JavaScript</option>
-              <option value="php">PHP</option>
-              <option value="java">Java</option>
-              <option value="golang">Golang</option>
-              <option value="python">Python</option>
-              <option value="c#">C#</option>
-              <option value="C++">C++</option>
-              <option value="erlang">Erlang</option>
+            <select name="languages" id="hours">
+              <option value="null" aria-placeholder="Choose a time estimate (hrs)"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="SplitFurther">Task too long, need to split task into futher subtask.</option>
             </select><br>
             <label for="priority">Priority:</label><br>
-            <input class="taskInput" type="text" id="priority" name="priority"><br>
-            <label for="assign">Assign:</label><br>
-            <input class="taskInput" type="text" id="assign" name="assign"><br><br>
-            <input type="submit" value="Submit">
+            <select name="languages" id="priority"> 
+              <option value="null" aria-placeholder="select a priority"></option>
+              <option value="!">!</option>
+              <option value="!!">!!</option>
+              <option value="!!!">!!!</option>
+              <option value="Long term">Long term, no priority needed</option>
+            </select>
+            <label for="assign">Assigned Member:</label><br>
+            <select name="users" id="users">
+              <option value="null" aria-placeholder="Choose a person"></option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="Long term">Long term, no priority needed</option>
+            </select> <br><br>
+            <input id="submit" type="submit" value="Create">
           </form> 
         </div>
       </div>
