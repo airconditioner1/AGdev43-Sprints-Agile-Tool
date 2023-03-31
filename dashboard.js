@@ -3,7 +3,7 @@ let taskFormBox = document.getElementById("box-taskForm")
 function createATask() {
     // btnCreateATask.innerText = "Creating Task"
     taskFormBox.innerHTML = `          
-          <form id="taskForm-el" method="post">            
+          <form id="taskForm-el">            
             <br><label for="title">Task Title:</label><br>
             <input class="taskInput" type="text" id="title" name="title" placeholder="type your task..."/><br>
             <label for="time">Hours To Complete:</label><br>
@@ -42,6 +42,7 @@ function createATask() {
 const taskForm = document.getElementById("taskForm-el")
 let tasks = []
 const taskTable = document.getElementById("taskTableBody")
+
 taskForm.addEventListener("submit", function() {
   // let currTask = []
   // let title = document.getElementById("title")
@@ -54,13 +55,14 @@ taskForm.addEventListener("submit", function() {
   // currTask.push(people.value)
   // tasks.push(currTask)
 
-  taskTable.innerHTML += `<tr>
-  <td>1,008</td>
-  <td>random</td>
-  <td>data</td>
-  <td>placeholder</td>
-  <td>text</td>
-</tr>`
+  taskTable.innerHTML += `
+  <tr>
+    <td>1,008</td>
+    <td>random</td>
+    <td>data</td>
+    <td>placeholder</td>
+    <td>text</td>
+  </tr>`
           //  `
           //   <tr>
           //     <td>${currTask[0]}</td>
