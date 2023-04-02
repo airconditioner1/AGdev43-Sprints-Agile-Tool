@@ -18,6 +18,8 @@ When sending queries to add new rows (7-11), remember that everything that is no
 
 I’ve added a non exhaustive list of checks to some of the queries. DO THESE CHECKS BEFORE SENDING IN DATA.
 
+Manisha!!
+
 Send in your own query
 def execute_query(self, query):
 
