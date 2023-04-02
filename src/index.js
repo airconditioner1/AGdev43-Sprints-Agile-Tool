@@ -4,6 +4,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Overlay from "./Overlay";
 import "./styles.css"
+import Google from "./Google";
 
 const App = () => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
 
       <div className="form-container sign-in-container">
         <LoginForm />
+        <Google />
       </div>
 
       <Overlay
