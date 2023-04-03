@@ -1,18 +1,10 @@
 
-import './App.css';
+//import './App.css';
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import DummyPage from "./DummyPage";
 import NavBar from "./NavBar";
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
-
-// function sendData()
-// {
-
-
-// }
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TaskForm({ onSubmit }) {
   const [description, setDescription] = useState("");
@@ -29,86 +21,164 @@ function TaskForm({ onSubmit }) {
     setUsers("");
 
 
-  }
+    
 
+  }
   return (
-    
-    <form onSubmit={handleSubmit}>
-      <div>
-      <h1>Task Manager</h1>
-        <label>
-          Description:
-          <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} />
-        </label>
-      </div>
-      <div>
-        <label>
-          Priority:
-          <select value={priority} onChange={(event) => setPriority(event.target.value)}>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Hours To Complete:
-          <select value={hours} onChange={(event) => setHours(event.target.value)}>
-            <option value="0">0</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="5">5</option>
-            <option value="8">8</option>
-            <option value="13">13</option>
-            <option value="21">21</option>
-            <option value="34">34</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Users:
-          <input type="text" value={users} onChange={(event) => setUsers(event.target.value)} />
-          <small>Separate multiple users with commas</small>
-        </label>
-      </div>
-      <button><btn1 type="submit">Add Task</btn1></button>
-    </form>
-    
+    <div className="container p-5">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <h1>Task Manager</h1>
+          <label>
+            Description:
+            <input type="text" className="form-control" value={description} onChange={(event) => setDescription(event.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Priority:
+            <select className="form-control" value={priority} onChange={(event) => setPriority(event.target.value)}>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            Hours To Complete:
+            <select className="form-control" value={hours} onChange={(event) => setHours(event.target.value)}>
+              <option value="0">0</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="8">8</option>
+              <option value="13">13</option>
+              <option value="21">21</option>
+              <option value="34">34</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            Users:
+            <input type="text" className="form-control" value={users} onChange={(event) => setUsers(event.target.value)} />
+            <small>Separate multiple users with commas</small>
+          </label>
+        </div>
+        <button className="btn btn-primary" type="submit">Add Task</button>
+      </form>
+    </div>
   );
 }
-
 
 function TaskTable({ tasks }) {
   return (
-    <div>
-    <div>
-      <h1>Tasks Table</h1>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Priority</th>
-          <th>Hours</th>
-          <th>Users</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tasks.map((task, index) => (
-          <tr key={index}>
-            <td>{task.description}</td>
-            <td>{task.priority}</td>
-            <td>{task.hours}</td>
-            <td>{task.users.join(", ")}</td>
+    <div className="container p-4">
+      <div>
+        <h1>Tasks Table</h1>
+      </div>
+      <table className="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Hours</th>
+            <th>Users</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tasks.map((task, index) => (
+            <tr key={index}>
+              <td>{task.description}</td>
+              <td>{task.priority}</td>
+              <td>{task.hours}</td>
+              <td>{task.users.join(", ")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
+//   return (
+    
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//       <h1>Task Manager</h1>
+//         <label>
+//           Description:
+//           <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} />
+//         </label>
+//       </div>
+//       <div>
+//         <label>
+//           Priority:
+//           <select value={priority} onChange={(event) => setPriority(event.target.value)}>
+//             <option value="high">High</option>
+//             <option value="medium">Medium</option>
+//             <option value="low">Low</option>
+//           </select>
+//         </label>
+//       </div>
+//       <div>
+//         <label>
+//           Hours To Complete:
+//           <select value={hours} onChange={(event) => setHours(event.target.value)}>
+//             <option value="0">0</option>
+//             <option value="2">2</option>
+//             <option value="3">3</option>
+//             <option value="5">5</option>
+//             <option value="8">8</option>
+//             <option value="13">13</option>
+//             <option value="21">21</option>
+//             <option value="34">34</option>
+//           </select>
+//         </label>
+//       </div>
+//       <div>
+//         <label>
+//           Users:
+//           <input type="text" value={users} onChange={(event) => setUsers(event.target.value)} />
+//           <small>Separate multiple users with commas</small>
+//         </label>
+//       </div>
+//       <button><btn1 type="submit">Add Task</btn1></button>
+//     </form>
+    
+//   );
+// }
+
+
+// function TaskTable({ tasks }) {
+//   return (
+//     <div>
+//     <div>
+//       <h1>Tasks Table</h1>
+//     </div>
+//     <table>
+//       <thead>
+//         <tr>
+//           <th>Description</th>
+//           <th>Priority</th>
+//           <th>Hours</th>
+//           <th>Users</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {tasks.map((task, index) => (
+//           <tr key={index}>
+//             <td>{task.description}</td>
+//             <td>{task.priority}</td>
+//             <td>{task.hours}</td>
+//             <td>{task.users.join(", ")}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//     </div>
+//   );
+// }
 
 function OtherElements()
 {

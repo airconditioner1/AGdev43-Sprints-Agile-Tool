@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function DummyPage() {
     return (
 
-        <div className="container">
+        <div className="container p-5">
           <h1>Welcome to the Next Page</h1>
           
           <button className="btn btn-primary"  onClick={() => window.location.href="/"}>Previous Page</button>

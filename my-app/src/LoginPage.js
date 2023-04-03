@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function LoginPage() {
     return (
 
-        <div className="container">
+        <div className="container p-5">
           <h1>Welcome to the LoginPage</h1>
         </div>
   

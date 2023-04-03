@@ -11,7 +11,7 @@ import LoginPage from "./LoginPage";
 import HomeScreen from "./HomeScreen";
 function Home () {
     return(
-        <div>
+        <div className="container p-5">
         {/* <div>
             Home Page
         </div> */}
