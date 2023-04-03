@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./App";
 import DummyPage from "./DummyPage";
 import NavBar from "./NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
 function Home () {
     return(
         <div>

@@ -3,18 +3,29 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./App";
 import Home from "./Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function DummyPage() {
     return (
 
-        <div>
+        <div className="container">
           <h1>Welcome to the Next Page</h1>
           
-          <button><btn2 style={{}} onClick={() => window.location.href="/"}>Previous Page</btn2></button>
-
+          <button className="btn btn-primary"  onClick={() => window.location.href="/"}>Previous Page</button>
+          {/* <button> <btn2 style={{}} onClick={() => window.location.href="/"}>Previous Page</btn2></button> */}
         </div>
   
     );
   }
+
+  // function dbstuff()
+  // {
+  //   fetch('http://localhost:5238/api')
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  //   .catch(error => console.error(error));
+  // }
+  // console.log(dbstuff())
 
   
   export default DummyPage;
