@@ -7,17 +7,21 @@ import App from "./App";
 import DummyPage from "./DummyPage";
 import NavBar from "./NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginPage from "./LoginPage";
+import HomeScreen from "./HomeScreen";
 function Home () {
     return(
         <div>
-        <div>
+        {/* <div>
             Home Page
-        </div>
+        </div> */}
 
         <NavBar />
         <Routes>
+            <Route path='/' element={<HomeScreen />}></Route>
             <Route path='/app-page' element={<App />}></Route>
             <Route path='/dummy-page' element={<DummyPage />}></Route>
+            <Route path='/login-page' element={<LoginPage />}></Route>
         </Routes>
        </div>
     )
