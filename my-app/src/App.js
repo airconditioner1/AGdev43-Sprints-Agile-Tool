@@ -176,14 +176,14 @@ function TaskTable({ tasks }) {
 //   );
 // }
 
-function OtherElements()
-{
-  return (
-    <div>
-      <button> <btn2 onClick={() => window.location.href="/dummy-page"}>Next Page</btn2></button>
-    </div>
-  );
-}
+// function OtherElements()
+// {
+//   return (
+//     <div>
+//       {/* <button> <btn2 onClick={() => window.location.href="/dummy-page"}>Next Page</btn2></button> */}
+//     </div>
+//   );
+// }
 
 
 function App() {
@@ -196,7 +196,7 @@ function App() {
 return (
 
       <div>
-        <div><TaskForm onSubmit={handleTaskSubmit} /><TaskTable tasks={tasks} /><OtherElements/></div>
+        <div><TaskForm onSubmit={handleTaskSubmit} /><TaskTable tasks={tasks} /></div>
         {/* <Routes>
           <Route path="/app-page" element={<div><TaskForm onSubmit={handleTaskSubmit} /><TaskTable tasks={tasks} /><OtherElements/></div>} />
           <Route path="/dummy-page" element={<DummyPage />} />
@@ -206,6 +206,10 @@ return (
 
   );
 }
+
+
+
+
 
 
 export default App;
