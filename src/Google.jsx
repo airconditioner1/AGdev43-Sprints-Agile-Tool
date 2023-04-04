@@ -1,15 +1,19 @@
 import { useEffect, useState} from "react";
 import jst_decode from "jwt-decode"
+import { useNavigate } from "react-router-dom";
+
 
 function Google(){
+
     const [user, setUser] = useState({});
 
+    const navigate = useNavigate(); 
+
     function handleCallbackResponse(response){
-    //console.log("Encoded JWT ID token: " + response.credential);
-    var userObject = jst_decode(response.credential)
-    console.log(userObject);
-    setUser(userObject);
-    document.getElementById("signInDiv").hidden= true;
+      var userObject = jst_decode(response.credential)
+      setUser(userObject);
+      document.getElementById("signInDiv").hidden= true;
+      navigate("/app-page")
     }
 
     function handleSignOut(e){

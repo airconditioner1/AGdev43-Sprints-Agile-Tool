@@ -28,7 +28,7 @@ const LoginForm = () => {
 
       <a
         className="btn btn-light login-button"
-        href="/login"
+        href="/login-page"
         role="button"
         style={{ textTransform: "none" }}
       >

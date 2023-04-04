@@ -54,6 +54,15 @@ a{
     font-size: 16px;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: aliceblue;
+}
+
 .form-container{
     position: absolute;
     top: 0;
@@ -144,6 +153,7 @@ a{
 .right-panel-active .overlay {
     transform: translateX(50%);
 }
+
 
 
 
