@@ -10,22 +10,11 @@ function DummyPage() {
 
         <div className="container p-5">
           <h1>Welcome to Story Poker</h1>
-          
-          {/* <button className="btn btn-primary"  onClick={() => window.location.href="/"}>Previous Page</button> */}
-          {/* <button> <btn2 style={{}} onClick={() => window.location.href="/"}>Previous Page</btn2></button> */}
-        </div>
+                  </div>
   
     );
   }
 
-  // function dbstuff()
-  // {
-  //   fetch('http://localhost:5238/api')
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
-  //   .catch(error => console.error(error));
-  // }
-  // console.log(dbstuff())
 
   
   export default DummyPage;

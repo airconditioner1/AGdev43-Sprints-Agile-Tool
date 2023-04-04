@@ -1,8 +1,16 @@
 import React from "react";
 
+// window.location.reload();
+
 const Overlay = ({ onSignInClick, onSignUpClick, isRightPanelActive }) => {
+  // setTimeout(1000);
+  window.location.reload();
   return (
-    <div className={`overlay-container ${isRightPanelActive ? "right-panel-active" : ""}`}>
+    <div
+      className={`overlay-container ${
+        isRightPanelActive ? "right-panel-active" : ""
+      }`}
+    >
       <div className="overlay">
         <div className="overlay-panel overlay-left">
           <h1>Let's get started!</h1>
@@ -32,4 +40,5 @@ const Overlay = ({ onSignInClick, onSignUpClick, isRightPanelActive }) => {
   );
 };
 
+// window.location.reload();
 export default Overlay;

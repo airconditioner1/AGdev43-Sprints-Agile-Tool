@@ -1,21 +1,17 @@
 /*********************HTML TAG Selector*************/
 
 /** initialize the page **/
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
+
 
 /** Use flex box to make container center vertically and horizontally **/
-body,html{
+/* body,html{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
     color: aliceblue;
-}
+} */
 
 form{
     display: flex;
@@ -44,9 +40,9 @@ a{
 .box{
     position: relative;
     background-color: #1e90ff;
-    width: 80%;
+    width: 50%;
     height: 50%;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .container-button{
@@ -55,7 +51,7 @@ a{
 }
 
 .container{
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -64,8 +60,7 @@ a{
 }
 
 .form-container{
-    position: absolute;
-    top: 0;
+    position: relative;
     height: 100%;
     color: white
 }
