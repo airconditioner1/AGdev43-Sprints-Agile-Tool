@@ -2,8 +2,7 @@
 //import './App.css';
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import DummyPage from "./DummyPage";
-import NavBar from "./NavBar";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TaskForm({ onSubmit }) {
@@ -20,15 +19,12 @@ function TaskForm({ onSubmit }) {
     setHours("0");
     setUsers("");
 
-
-    
-
   }
   return (
     <div className="container p-5">
       <form onSubmit={handleSubmit}>
         <div>
-          <h1>Task Manager</h1>
+          <h1 >Task Manager</h1>
           <label>
             Description:
             <input type="text" className="form-control" value={description} onChange={(event) => setDescription(event.target.value)} />

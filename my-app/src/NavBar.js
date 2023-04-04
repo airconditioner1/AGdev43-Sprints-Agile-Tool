@@ -15,7 +15,7 @@ function NavBar () {
                 
             </div>
             <div class="container-fluid">
-                <a class="nav-link" href='/dummy-page'>DummyPage</a>
+                <a class="nav-link" href='/dummy-page'>Story Poker</a>
                 
             </div>
             {/* <div class="container-fluid">

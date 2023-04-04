@@ -9,9 +9,9 @@ function DummyPage() {
     return (
 
         <div className="container p-5">
-          <h1>Welcome to the Next Page</h1>
+          <h1>Welcome to Story Poker</h1>
           
-          <button className="btn btn-primary"  onClick={() => window.location.href="/"}>Previous Page</button>
+          {/* <button className="btn btn-primary"  onClick={() => window.location.href="/"}>Previous Page</button> */}
           {/* <button> <btn2 style={{}} onClick={() => window.location.href="/"}>Previous Page</btn2></button> */}
         </div>
   
