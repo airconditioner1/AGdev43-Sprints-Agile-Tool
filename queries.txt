@@ -90,3 +90,8 @@ q_assign_proj = "
 insert into Team (Email, PNum)
   values (_x, _y);
 "
+q_all_info_about_tasks = "
+select * 
+from Task T inner join Assigned A 
+on T.TaskNum=A.TaskNum;
+"
