@@ -57,9 +57,9 @@ function Homepage() {
             <li><a href="#">Contact</a></li>
           </ul>
           <div className="cta">
-            {/* <h3></h3>
+            <h3></h3>
             <button>Login</button>
-            <button>Sign Up</button> */}
+            <button>Sign Up</button>
         </div>
         </nav>
       </header>
