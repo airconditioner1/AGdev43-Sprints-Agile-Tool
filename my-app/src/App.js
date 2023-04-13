@@ -31,7 +31,7 @@ function Homepage() {
             <li>Clear and Efficient Taskboard<img id="placeholder" src='/images/placeholder.png' alt="placeholder"/></li>
             <li>Time saving Agile tips<img id="placeholder" src='/images/placeholder.png' alt="placeholder"/></li>
             <li>Collaborative team communication<img id="placeholder" src='/images/placeholder.png' alt="placeholder"/></li>
-            <li>Client involvement and feedback<img id="placeholder" src='/images/placeholder.png' alt="placeholder"/></li>
+            <li>Collaborative Story Poker <img id="placeholder" src='/images/placeholder.png' alt="placeholder"/></li>
            </ul>
         </div>
         
