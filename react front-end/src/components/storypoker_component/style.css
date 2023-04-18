@@ -1,0 +1,75 @@
+/* Styling for h1 */
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+}
+
+/* Styling for h2 */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #666666;
+}
+
+/* Styling for p */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444444;
+}
+
+/* Styling for button */
+button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Styling for input */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.component-div{
+  margin:3%;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-right: 1rem;
+  width: 7rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+input{
+  margin-top: 1rem;
+}

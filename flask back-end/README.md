@@ -1,7 +1,20 @@
 # AGDev43
-Updated: 4/3/2023
-Version: v1.5
+Updated: 4/18/2023
+Version: v1.6
 Authors: sjain85@wisc.edu
+
+# Story Poker update
+
+This is the story poker plan:
+1. User creates story (storypoker-create) endpoint. Using user-email, time, and story name, a record is stored in the database
+2. User submits their answer (update query to db with email + answer) ->storypoker-submit endpoint. Parameters: email, user answer (integer), 
+3. User submits view results request. Flask returns time remaining (select * from SP query posted), or the output. (storypoker-result endpoint on flask). Parameters are just email.
+
+
+Queries required: get t1, get full table, delete all old records, insert all new records, update each record by email
+create SP : delete all records, insert new records (emails list, stories, t1, ans=null)
+submit answer: [flask: compare t1, if ok then continue]: update query (single email and answer)
+show results: [flask: compare t1, if ok then continue]: get full table
 
 
 # Quick Start

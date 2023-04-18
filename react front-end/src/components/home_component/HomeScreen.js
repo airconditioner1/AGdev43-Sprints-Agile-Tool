@@ -9,6 +9,8 @@ function Homepage() {
           id="SprintsLogo"
           src="/images/SprintsLogo.jpg"
           alt="Sprints Logo"
+          // height={200}
+          width={550}
         />
         <h1>Welcome to Sprints</h1>
         <p>

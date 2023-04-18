@@ -4,6 +4,7 @@ import placeholders as dbret
 import dbservices.sqlconnect as sqlconn
 import traceback
 from flask_cors import CORS
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -48,6 +49,69 @@ def post_variables():
     # return jsonresponse, 200, { 'Access-Control-Allow-Origin': '*' }
     return dbresponse, 200, { 'Access-Control-Allow-Origin': '*' }
 
+
+@app.route('/storypoker-create', methods=['POST', 'GET'])
+def createStoryPoker():
+    #TODO: insert queries here
+    querystr = request.json
+    print(querystr)
+    submitter_email = querystr.get('user_email')
+    teammates_emails = querystr.get('email_list')
+    submit_time = datetime.now()
+    delete_all_query = ""
+    insert_all_query = ""
+    #TODO: SUBMIT QUERY
+    dbresponse = sqlconn.main(hostname=session["hostname"], portnum=session['portnum'], query=session['query'])
+    dbresponse = {"Content":"The backend for creating a SP instance has not been set up"}
+    return dbresponse, 200, { 'Access-Control-Allow-Origin': '*' }
+
+
+@app.route('/storypoker-submit', methods=['POST', 'GET'])
+def updateStoryPoker():
+    #TODO: insert queries here
+    querystr = request.json
+    print(querystr)
+    submitter_email = querystr.get('user_email')
+    teammates_emails = querystr.get('answer')
+    submit_time = datetime.now()
+    query = "make update query here"
+    dbresponse = sqlconn.main(hostname=session["hostname"], portnum=session['portnum'], query=session['query'])
+    dbresponse = {"Content":"The backend for the submit SP answer has not yet been set up"}
+    return dbresponse, 200, { 'Access-Control-Allow-Origin': '*' }
+
+
+@app.route('/storypoker-result', methods=['POST', 'GET'])
+def resultStoryPoker():
+    #TODO: insert queries here
+    querystr = request.json
+    print(querystr)
+    submitter_email = querystr.get('user_email')
+    fetch_query = ""
+    #TODO: update query
+    dbresponse = sqlconn.main(hostname=session["hostname"], portnum=session['portnum'], query=fetch_query)
+    #TODO: remove placeholder
+    dbresponse = {"Content":"The backend for the fetch results service has not yet been set-up"}
+    return dbresponse, 200, { 'Access-Control-Allow-Origin': '*' }
+    
+
+# either set variables or set a query
+@app.route('/setvariables', methods=['POST'])
+def set_variables():
+    querystr = request.json
+    print(querystr) 
+    if(len(session['hostname']) < 5):
+        session['hostname'] = querystr.get('hostname')
+        session['portnum'] = querystr.get('portnum')
+        session['user'] = querystr.get('user')
+        session['password'] = querystr.get('password')
+        session['database'] = querystr.get('database')
+        return {"content":"received"},200, { 'Access-Control-Allow-Origin': '*' }
+
+    query = querystr.get('hostname')
+    session['query'] = query
+    dbresponse = sqlconn.main(hostname=session["hostname"], portnum=session['portnum'], query=query)
+    jsonresponse = json.dumps({"data":"Success", "status":200, "response":"Accepted", "variables": str(vars)})
+    return dbresponse, 200, { 'Access-Control-Allow-Origin': '*' }
 
 # get endpoint for any queries. Need to validate queries soon.
 @app.route('/get/select', methods=['GET'])

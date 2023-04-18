@@ -15,17 +15,17 @@ function NavBar() {
           </li>
           <li>
             <a className="nav-link" href="/app-page">
-              Dashboard
+              Taskboard
+            </a>
+          </li>
+          <li>
+            <a className="nav-link" href="/storypoker">
+              Story Poker
             </a>
           </li>
           <li>
             <a className="nav-link" href="/dummy-page">
-              Services
-            </a>
-          </li>
-          <li>
-            <a className="nav-link" href="/dummy-page">
-              Contact
+              Chatroom
             </a>
           </li>
         </ul>

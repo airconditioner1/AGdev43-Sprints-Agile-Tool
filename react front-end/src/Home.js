@@ -6,6 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./components/login_component/LoginPage";
 import HomeScreen from "./components/home_component/HomeScreen";
 import Cookies from "js-cookie";
+import StoryPoker from "./components/storypoker_component/StoryPoker";
+import QuestionPage from "./components/storypoker_component/QuestionPage";
+import ResultsPage from "./components/storypoker_component/ResultsPage";
+
 
 
 function Home() {
@@ -20,6 +24,10 @@ function Home() {
         <Route path="/app-page" element={<App />}></Route>
         <Route path="/dummy-page" element={<DummyPage />}></Route>
         <Route path="/login-page" element={<LoginPage />}></Route>
+        <Route exact path='/storypoker' element={<StoryPoker />} />
+        <Route path='/storypoker/question' element={<QuestionPage/>} />
+        <Route path='/storypoker/results' element={<ResultsPage/>} />
+
       </Routes>
     </div>
   );
