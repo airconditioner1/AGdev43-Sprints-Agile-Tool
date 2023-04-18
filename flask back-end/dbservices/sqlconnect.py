@@ -3,9 +3,6 @@ from mysql.connector import errorcode
 import json
 from datetime import date, datetime
 
-# Query strings
-q_all_cards_by_proj = "select Title, DueDate, Hours, Priority, Status from Task where PNum = {:d};"
-
 # JSON serializer for objects not serializable by default json code
 def json_serial(obj):
   if isinstance(obj, (datetime, date)):
@@ -40,9 +37,6 @@ class DBAccess:
     jsonret = json.dumps(dictionary, indent=2, default=json_serial)
 
     return(jsonret)
-  
-  def all_cards_by_proj(self, pnum):
-    return self.execute_query(q_all_cards_by_proj.format(pnum))
 
   def __del__(self):
     self.cursor.close() 
