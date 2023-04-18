@@ -116,17 +116,20 @@ create table `AGDev43`.`SP`(
 q_get_t1 = """
 select t1
 from SP
+where StoryName = _x
 limit 1;
 """
 
 q_get_full_SP = """
-select *
-from SP;
+select Email, Answer
+from SP
+where StoryName = _x;
 """
 
 q_delete_SP = """
 delete
-from SP;
+from SP
+where Email=_x;
 """
 
 q_insert_new_SP_row = """
