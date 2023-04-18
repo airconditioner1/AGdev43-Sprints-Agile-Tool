@@ -1,10 +1,5 @@
 # Table Queries
 
-
-show_tables = """
-show tables;
-"""
-
 Task_init = """
 create table `AGDev43`.`Task`(
   `TaskNum` int not null auto_increment,
@@ -50,47 +45,57 @@ create table `AGDev43`.`Assigned`(
   primary key (`Email`, `TaskNum`)
 );
 """
+
 q_all_cards_by_proj = """
 select Title, DueDate, Hours, Priority, Status
   from Task
   where PNum = _x;
 """
+
 q_all_tasks_by_proj = """
 select *
   from Task
   where PNum = _x;
 """
+
 q_all_users_by_task = """
 select U.Email, U.Username
   from User U, Assigned A
   where U.Email = A.Email and A.TaskNum = _x;
 """
+
 q_all_users_by_proj = """
 select U.Email, U.Username
   from User U, Team T
   where U.Email = T.Email and T.PNum = _x;
 """
+
 q_all_tasks_by_proj_status = """
 select *
   from Task
   where PNum = _x and Status = _y;
 """
+
 q_new_task = """
 insert into Task (PNum, Title, Desc, DueDate, Hours, Priority, Status)
   values (_a, _b, _c, ...);
 """
+
 q_new_user = """
 insert into User (Email, Username)
   values (_x, _y);
 """
+
 q_assign_task = """
 insert into Assign (Email, TaskNum)
   values (_x, _y);
 """
+
 q_new_proj = """
 insert into Project (PNum, Name)
   values (_x, _y);
 """
+
 q_assign_proj = """
 insert into Team (Email, PNum)
   values (_x, _y);
