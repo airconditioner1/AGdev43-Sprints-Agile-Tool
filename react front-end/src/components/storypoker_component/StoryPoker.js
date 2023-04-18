@@ -10,8 +10,27 @@ let assigned_user = "";
 const assigned_users = [];
 var index = 0;
 
+function StoryPoker() {
 
-const StoryPoker = () => {
+  if (Cookies.get("authenticated") === 'true') {
+    return (
+      <div>
+        <div>
+          <StorypokerComp />
+        </div>
+      </div>
+    );
+  } else {
+    console.log(Cookies.get("authenticated"));
+    return (
+      <div>
+        <h1 style={{ color: "red" }}>Please sign into sprints!</h1>
+      </div>
+    );
+  }
+}
+
+function StorypokerComp() {
 	const [message, setMessage] = useState('');
 
 	const [updated, setUpdated] = useState(message);
@@ -74,7 +93,7 @@ const StoryPoker = () => {
 					placeholder='As <user>, I want to...'
 				/>
 				
-			<button style={{marginBottom:"2%"}} onClick={handleClick}>Confirm Question</button>
+			<button style={{marginBottom:"2%"}} onClick={handleClick}>Confirm</button>
 
 			<h2 style={{marginBlock:"2%"}}>{"Current question: "+updated}</h2>
 			<h2>Assign Users to answer:</h2>
@@ -87,16 +106,17 @@ const StoryPoker = () => {
 					value={users}
 					placeholder='Enter user email one at a time: sally@sprints.com'
 				/>	  
-			
+			<div className="button-container">
 			<button  onClick={handleClick2}>Add</button>
 			<button style={{margin:"10px"}} onClick={handleClick3}>Clear</button>
+			</div>
 
 			<h2 >Assigned Users: </h2>
 
 			<h2 id="user_list"></h2>
 			
 			<Link to="/storypoker/question">
-					<button onClick={submitQuestion}>Present Question</button>
+					<button style={{width: "11rem"}} onClick={submitQuestion}>Present question</button>
 			</Link>
 		</div>
 
