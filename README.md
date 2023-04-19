@@ -14,6 +14,8 @@ Then:
 To access the chatroom feature, open a new terminal in the same directory and type
 `npm run server`
 
+The backend is not run. Rather, it is a storage to show the current back-end code running on the docker services. 
+
 # Description
 These are the current features of the product:
 1. login and logout with google (no signup yet, mark working on it)
@@ -25,4 +27,7 @@ These are the current features of the product:
 
 
 # Problems
+1. Story poker not yet connected to db
+2. chatroom only works on same netowork currently. Will have to host express server somewhere else for public access (maybe on csl docker but need to research)
+3. cookies sometimes act funny
 Update this section with known bugs, suggestions, problems etc.
