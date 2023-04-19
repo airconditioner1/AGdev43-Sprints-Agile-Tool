@@ -1,34 +1,34 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from "js-cookie";
+import "./taskboard.css";
 
-
-function TaskForm({ onSubmit }) {
-  const [description, setDescription] = useState("");
+function TaskForm({ onSubmit, setTasks }) {
+  const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("medium");
   const [users, setUsers] = useState("");
   const [hours, setHours] = useState("0");
+  const [dueDate, setDueDate] = useState("");
+  // dueDate.replace('-', '/');
 
   function dbstuff() {
-    return (
-      fetch("https://6180-128-105-37-247.ngrok.io//post/variables", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "anything",
-        },
-        body: JSON.stringify({
-          hostname: "database",
-          portnum: "3306",
-          query: "select * from Task;",
-          user: "root",
-          password: "mc",
-          database: "AGDev43",
-        }),
-      })
-        .then((response) => response.json())
-        .catch((error) => console.error(error))
-    );
+    return fetch("https://ace0-128-105-37-247.ngrok-free.app/post/variables", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query: "select * from Task;",
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
   }
 
   function sleep() {
@@ -41,33 +41,77 @@ function TaskForm({ onSubmit }) {
 
   function loadTasks() {
     let iterator = dbstuff();
-
-    var arr = "9999";
-
     const promise = Promise.resolve(iterator);
-
     promise.then((response) => {
-      var title = response[0]["Title"];
-      var description = response[0]["Desc"];
-      var priority = response[0]["Priority"];
-      var hours = response[0]["Hours"];
-      console.log(response);
+      var tasks = response;
+      setTasks(tasks); // update state with fetched data
     });
     sleep();
-    console.log(arr); 
+  }
+
+  function dbstuffSend() {
+    console.log(dueDate);
+    console.log(title);
+    console.log(
+      "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
+        "VALUES (NULL , 8,'" +
+        title +
+        "','" +
+        users +
+        "','" +
+        dueDate +
+        "','" +
+        hours +
+        "','" +
+        priority +
+        "', NULL, NULL, NULL, '')"
+    );
+
+    return fetch("https://ace0-128-105-37-247.ngrok-free.app/post/variables", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query:
+          "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
+          "VALUES (NULL , 8,'" +
+          title +
+          "','" +
+          users +
+          "','" +
+          dueDate +
+          "','" +
+          hours +
+          "','" +
+          priority +
+          "', NULL, NULL, NULL,'" +
+          Cookies.get("user_email") +
+          "')",
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    onSubmit({ description, priority, users: users.split(","), hours });
-    setDescription("");
+    onSubmit({ title, priority, users: users.split(","), hours, dueDate });
+    setTitle("");
     setPriority("medium");
     setHours("0");
     setUsers("");
+    setDueDate("")
   }
-  
+
   return (
-    <div style={{ marginTop: 100 }} className="container p-5">
+    <div className="container p-5">
       <form onSubmit={handleSubmit}>
         <div>
           <p>Logged in: {Cookies.get("user_email")}</p>
@@ -81,16 +125,16 @@ function TaskForm({ onSubmit }) {
               textAlign: "center",
             }}
           >
-            Description:
+            Title:
             <input
               type="text"
               className="form-control"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
             />
           </label>
         </div>
-        <div>
+        <div className="form-side-container">
           <label>
             Priority:
             <select
@@ -102,6 +146,18 @@ function TaskForm({ onSubmit }) {
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
+          </label>
+          <label style={{marginLeft:30}}>
+            Due Date:
+              <input style={{marginLeft:0}}
+              title="Due Date"
+                placeholder="Select date"
+                type="date"
+                id="example"
+                value={dueDate}
+                class="form-control"
+                onChange={(event) => setDueDate(event.target.value)}
+              />
           </label>
         </div>
         <div>
@@ -135,17 +191,23 @@ function TaskForm({ onSubmit }) {
             <small>Separate multiple users with commas</small>
           </label>
         </div>
-        <button className="btn btn-primary" type="submit">
-          Add Task
-        </button>
-        <button
-          className="btn btn-primary"
-          style={{ margin: 10 }}
-          onClick={loadTasks}
-        >
-          {" "}
-          Load tasks{" "}
-        </button>
+        <div className="button-container">
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={dbstuffSend}
+          >
+            Add Task
+          </button>
+          <button
+            className="btn btn-primary"
+            style={{ margin: 10 }}
+            onClick={loadTasks}
+          >
+            {" "}
+            Load tasks{" "}
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -155,24 +217,27 @@ function TaskTable({ tasks }) {
   return (
     <div className="container p-4">
       <div>
-        <h1>Tasks Table</h1>
+        <h1 style={{ marginTop: 150 }}>Tasks Table</h1>
       </div>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Description</th>
+            <th>Title</th>
             <th>Priority</th>
             <th>Hours</th>
             <th>Users</th>
+            <th>Due Date</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((task, index) => (
             <tr key={index}>
-              <td>{task.description}</td>
-              <td>{task.priority}</td>
-              <td>{task.hours}</td>
-              <td>{task.users.join(", ")}</td>
+              <td>{task.Title}</td>
+              <td>{task.Priority}</td>
+              <td>{task.Hours}</td>
+              <td>{task.Desc}</td>
+              <td>{task.DueDate}</td>
             </tr>
           ))}
         </tbody>
@@ -185,14 +250,25 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   function handleTaskSubmit(task) {
-    setTasks([...tasks, task]);
+    setTasks([
+      ...tasks,
+      {
+        Title: task.title,
+        Priority: task.priority,
+        Hours: task.hours,
+        Desc: task.users,
+        DueDate: task.dueDate
+      },
+    ]);
   }
 
-  if (Cookies.get("authenticated") === 'true') {
+  if (Cookies.get("authenticated") === "true") {
     return (
-      <div>
-        <div>
-          <TaskForm onSubmit={handleTaskSubmit} />
+      <div class="display-container">
+        <div class="Form">
+          <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
+        </div>
+        <div class="Table">
           <TaskTable tasks={tasks} />
         </div>
       </div>
@@ -201,7 +277,9 @@ function App() {
     console.log(Cookies.get("authenticated"));
     return (
       <div>
-        <h1 style={{ color: "red" }}>Please sign into sprints!</h1>
+        <h1 style={{ color: "red" }}>
+          Please sign into sprints to access TaskBoard!
+        </h1>
       </div>
     );
   }

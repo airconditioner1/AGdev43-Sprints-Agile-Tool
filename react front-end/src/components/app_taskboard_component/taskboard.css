@@ -14,14 +14,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   margin: 0;
   font-family: "Lato", sans-serif;
 }
 
 .container {
-  margin: 30px auto;
-  width: 350px;
+  margin: 10px auto;
 }
 
 h1 {
@@ -167,4 +165,32 @@ button btn2 {
   .container {
     width: 300px;
   }
+}
+
+.display-container {
+  display: flex;
+  flex-wrap: wrap;  
+}
+
+.Form {
+  /* flex: 1 1 50%; */
+  background-color: rgba(255, 0, 0, 0.159);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.form-side-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Table {
+  flex: 1 1 50%;
+  background-color: rgba(0, 0, 255, 0.184);
 }

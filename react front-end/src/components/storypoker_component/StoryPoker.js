@@ -24,7 +24,7 @@ function StoryPoker() {
     console.log(Cookies.get("authenticated"));
     return (
       <div>
-        <h1 style={{ color: "red" }}>Please sign into sprints!</h1>
+        <h1 style={{ color: "red" }}>Please sign into sprints to access SP!</h1>
       </div>
     );
   }
@@ -69,13 +69,13 @@ function StorypokerComp() {
 		console.log(message);
 		console.log(Cookies.get('user_email'))
 		//TODO: make api call to flask to insert question
-		alert("make flask sql queries: delete all, insert new records")
+		// alert("make flask sql queries: delete all, insert new records")
 	}
 
 	const handleClick3 = () => {
 		// 👇 "message" stores input field value
 		assigned_users.length = 0
-		alert("All assigned users are cleared")
+		// alert("All assigned users are cleared")
 		document.getElementById("user_list").innerHTML = assigned_users;
 	};
 

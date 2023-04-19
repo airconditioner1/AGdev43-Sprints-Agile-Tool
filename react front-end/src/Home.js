@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./components/app_taskboard_component/App";
-import DummyPage from "./components/dummypage_component/DummyPage";
+import DummyPage from "./components/chatroom_component/Chatroom";
 import NavBar from "./components/navbar_component/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./components/login_component/LoginPage";

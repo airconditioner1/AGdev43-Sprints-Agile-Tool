@@ -17,7 +17,7 @@ const QuestionPage = () => {
   const getResultsDB = () => {
     console.log('getting results from db');
     console.log('if dbresponse = false then proceed to next page or pop an error msg to how much time');
-    alert('make results call to database. If success, proceed to next page with full table');
+    // alert('make results call to database. If success, proceed to next page with full table');
     //TODO: make flask call to get results
   }
 
@@ -29,7 +29,7 @@ const QuestionPage = () => {
     console.log(Cookies.get('user_email'));
     console.log(a);  // log the new value of 'hour_needed'
     //TODO: make flask call to insert answer
-    alert("got user answer and email");
+    alert("Your answer is "+a.toString()+" hours!");
   };
 return (
 	<div className="component-div">
