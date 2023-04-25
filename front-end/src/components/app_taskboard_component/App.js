@@ -115,6 +115,7 @@ function TaskForm({ onSubmit, setTasks }) {
       <form onSubmit={handleSubmit}>
         <div>
           <p>Logged in: {Cookies.get("user_email")}</p>
+          <p>Username: {Cookies.get("username")}</p>
           <h1>Task Manager</h1>
           <br></br>
           <label

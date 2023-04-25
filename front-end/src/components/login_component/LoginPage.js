@@ -4,11 +4,11 @@ import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import SignUp from "./Sign-up";
+import CookieBanner from "./CookieBanner";
 
-function LoginPage() {
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
-  var persistUser = null;
+function LoginPage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
+  
   // user = JSON.parse(window.localStorage.getItem('user'));
 
   const login = useGoogleLogin({
@@ -17,6 +17,7 @@ function LoginPage() {
       console.log("LOGGED IN");
       setUser(codeResponse);
       window.localStorage.setItem('user', JSON.stringify(codeResponse));
+      setIsLoggedIn(true)
     },
     onError: (error) => console.log("Login Failed:", error),
   });
@@ -46,15 +47,6 @@ function LoginPage() {
         .catch((err) => console.log(err));
     }
   }, [user]);
-  // log out function to log the user out of google and set the profile array to null
-  const logOut = () => {
-    window.localStorage.setItem('user', null);
-    googleLogout();
-    setProfile([]);
-    Cookies.set("user_email", 'false');
-    Cookies.set("authenticated", 'false');
-    console.log(Cookies.get('authenticated'));
-  };
 
   return (
     <div
@@ -82,15 +74,16 @@ function LoginPage() {
           <p>Email Address: {profile.email}</p>
           <br />
           <br />
-          <button onClick={logOut}>Log out</button>
         </div>
       ) : (
         <div>
         <button onClick={() => login()}>Sign in with Google 🚀 </button>
         </div>
       )}
+        <CookieBanner />
     </div>
   );
 }
 
 export default LoginPage;
+
