@@ -7,7 +7,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import "./chatroom.css";
 import { v4 as uuidv4 } from "uuid";
 
-const socket = io("http://192.168.1.33:3001"); // Replace with your server URL
+const socket = io("http://10.140.29.146:3001"); // Replace with your server URL
 
 const Chatroom = () => {
   const [messages, setMessages] = useState([]);
@@ -40,7 +40,7 @@ const Chatroom = () => {
         <h1>Chatroom</h1>
         <div className="messages-box">
         <ScrollToBottom >
-          <div>
+          <div className="scrollauto-box">
             {messages.map((message, i) => (
               <div
                 key={i}

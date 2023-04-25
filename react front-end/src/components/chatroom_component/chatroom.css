@@ -11,7 +11,7 @@
   outline-width: 1%;
   outline-color: black;
   outline-width: 1%;
-  max-height: 500px;
+  /* max-height: 500px; */
   overflow: auto;
 }
 
@@ -47,4 +47,8 @@
   .chat-container {
     margin: 0 20%;
   }
+}
+
+.scrollauto-box{
+  max-height: 100%;
 }

@@ -9,10 +9,9 @@ function TaskForm({ onSubmit, setTasks }) {
   const [users, setUsers] = useState("");
   const [hours, setHours] = useState("0");
   const [dueDate, setDueDate] = useState("");
-  // dueDate.replace('-', '/');
 
   function dbstuff() {
-    return fetch("https://ace0-128-105-37-247.ngrok-free.app/post/variables", {
+    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +66,7 @@ function TaskForm({ onSubmit, setTasks }) {
         "', NULL, NULL, NULL, '')"
     );
 
-    return fetch("https://ace0-128-105-37-247.ngrok-free.app/post/variables", {
+    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
