@@ -47,7 +47,39 @@ function TaskForm({ onSubmit, setTasks }) {
     });
     sleep();
   }
-
+  function dbstuffSend() {
+    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query:
+          "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
+          "VALUES (NULL , 8,'" +
+          title +
+          "','" +
+          users +
+          "','" +
+          dueDate +
+          "','" +
+          hours +
+          "','" +
+          priority +
+          "', NULL, NULL, NULL,'" +
+          Cookies.get("user_email") +
+          "')",
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+  }
   function dbstuffSend() {
     console.log(dueDate);
     console.log(title);
