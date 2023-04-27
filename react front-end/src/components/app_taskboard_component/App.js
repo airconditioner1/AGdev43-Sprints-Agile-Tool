@@ -2,6 +2,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from "js-cookie";
 import "./taskboard.css";
+import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
+
 
 function TaskForm({ onSubmit, setTasks }) {
   const [title, setTitle] = useState("");
@@ -9,6 +11,8 @@ function TaskForm({ onSubmit, setTasks }) {
   const [users, setUsers] = useState("");
   const [hours, setHours] = useState("0");
   const [dueDate, setDueDate] = useState("");
+
+  loadTasks();
 
   function dbstuff() {
     return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
@@ -54,7 +58,7 @@ function TaskForm({ onSubmit, setTasks }) {
     //check if all fields is filled before sending the request
      //testing
     
-     if (title === "" || dueDate === "" || hours === "" || users === ""){
+     if (title === "" || dueDate === "" || hours === "" || users === "" ){
       alert("Please filled the form correctly !")
       return;
     }   
@@ -110,9 +114,13 @@ function TaskForm({ onSubmit, setTasks }) {
   }
   //testing
   function dbDelete() {
-      let desc = prompt("Enter the assigned user(s) for the deleting task: ");
-      let title = prompt("Enter the title for the deleting task: ");
-      let input_query = `DELETE FROM Task WHERE \`Task\`.\`Desc\` = '${desc}' AND \`Task\`.\`Title\` = '${title}'`;
+    let title = prompt("Enter the title for the deleting task: ");
+
+      if(title===null){
+        return;
+      }
+
+      let input_query = `DELETE FROM Task WHERE \`Task\`.\`Title\` = '${title}'`;
       alert("If you input the title and users correctly, the row is deleted, nothing otherwise ");
       return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
         method: "POST",
@@ -312,6 +320,42 @@ function TaskForm({ onSubmit, setTasks }) {
 }
 
 function TaskTable({ tasks }) {
+  const [sortField, setSortField] = useState(null);
+  const [sortDirection, setSortDirection] = useState('asc');
+
+  const sortTasks = (field) => {
+    if (field === sortField) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortIcon = (field) => {
+    if (field === sortField) {
+      return sortDirection === 'asc' ? <FaSortUp /> : <FaSortDown />;
+    } else {
+      return <FaSort />;
+    }
+  };
+
+  const sortedTasks = tasks.sort((a, b) => {
+    if (sortField) {
+      const fieldValueA = a[sortField];
+      const fieldValueB = b[sortField];
+      if (fieldValueA < fieldValueB) {
+        return sortDirection === 'asc' ? -1 : 1;
+      } else if (fieldValueA > fieldValueB) {
+        return sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  });
+
   return (
     <div className="container p-4">
       <div>
@@ -320,22 +364,35 @@ function TaskTable({ tasks }) {
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Priority</th>
-            <th>Hours</th>
-            <th>Users</th>
-            <th>Due Date</th>
-            <th>Status</th>
+            <th onClick={() => sortTasks('Title')}>
+              Title {getSortIcon('Title')}
+            </th>
+            <th onClick={() => sortTasks('Priority')}>
+              Priority {getSortIcon('Priority')}
+            </th>
+            <th onClick={() => sortTasks('Hours')}>
+              Hours {getSortIcon('Hours')}
+            </th>
+            <th onClick={() => sortTasks('Desc')}>
+              Users {getSortIcon('Desc')}
+            </th>
+            <th onClick={() => sortTasks('DueDate')}>
+              Due Date {getSortIcon('DueDate')}
+            </th>
+            <th onClick={() => sortTasks('Status')}>
+              Status {getSortIcon('Status')}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task, index) => (
+          {sortedTasks.map((task, index) => (
             <tr key={index}>
               <td>{task.Title}</td>
               <td>{task.Priority}</td>
               <td>{task.Hours}</td>
               <td>{task.Desc}</td>
               <td>{task.DueDate}</td>
+              <td>{task.Status}</td>
             </tr>
           ))}
         </tbody>
@@ -343,6 +400,39 @@ function TaskTable({ tasks }) {
     </div>
   );
 }
+
+// function TaskTable({ tasks }) {
+//   return (
+//     <div className="container p-4">
+//       <div>
+//         <h1 style={{ marginTop: 150 }}>Tasks Table</h1>
+//       </div>
+//       <table className="table table-bordered table-striped">
+//         <thead>
+//           <tr>
+//             <th>Title</th>
+//             <th>Priority</th>
+//             <th>Hours</th>
+//             <th>Users</th>
+//             <th>Due Date</th>
+//             <th>Status</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {tasks.map((task, index) => (
+//             <tr key={index}>
+//               <td>{task.Title}</td>
+//               <td>{task.Priority}</td>
+//               <td>{task.Hours}</td>
+//               <td>{task.Desc}</td>
+//               <td>{task.DueDate}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
 
 function App() {
   const [tasks, setTasks] = useState([]);
