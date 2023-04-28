@@ -2,6 +2,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from "js-cookie";
 import "./taskboard.css";
+import { SERVER_URL } from "../../configdata";
 
 function TaskForm({ onSubmit, setTasks }) {
   const [title, setTitle] = useState("");
@@ -11,7 +12,7 @@ function TaskForm({ onSubmit, setTasks }) {
   const [dueDate, setDueDate] = useState("");
 
   function dbstuff() {
-    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
+    return fetch(SERVER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +21,7 @@ function TaskForm({ onSubmit, setTasks }) {
       body: JSON.stringify({
         hostname: "agdev-db",
         portnum: "3306",
-        query: "select * from Task;",
+        query: "select * from Task;", 
         user: "root",
         password: "mc",
         database: "AGDev43",
@@ -48,7 +49,7 @@ function TaskForm({ onSubmit, setTasks }) {
     sleep();
   }
   function dbstuffSend() {
-    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
+    return fetch(SERVER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,57 +81,7 @@ function TaskForm({ onSubmit, setTasks }) {
       .then((response) => response.json())
       .catch((error) => console.error(error));
   }
-  function dbstuffSend() {
-    console.log(dueDate);
-    console.log(title);
-    console.log(
-      "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
-        "VALUES (NULL , 8,'" +
-        title +
-        "','" +
-        users +
-        "','" +
-        dueDate +
-        "','" +
-        hours +
-        "','" +
-        priority +
-        "', NULL, NULL, NULL, '')"
-    );
-
-    return fetch("https://e6aabec63f4f.ngrok.app/post/variables", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "anything",
-      },
-      body: JSON.stringify({
-        hostname: "agdev-db",
-        portnum: "3306",
-        query:
-          "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
-          "VALUES (NULL , 8,'" +
-          title +
-          "','" +
-          users +
-          "','" +
-          dueDate +
-          "','" +
-          hours +
-          "','" +
-          priority +
-          "', NULL, NULL, NULL,'" +
-          Cookies.get("user_email") +
-          "')",
-        user: "root",
-        password: "mc",
-        database: "AGDev43",
-      }),
-    })
-      .then((response) => response.json())
-      .catch((error) => console.error(error));
-  }
-
+  
   function handleSubmit(event) {
     event.preventDefault();
     onSubmit({ title, priority, users: users.split(","), hours, dueDate });
@@ -200,6 +151,7 @@ function TaskForm({ onSubmit, setTasks }) {
               onChange={(event) => setHours(event.target.value)}
             >
               <option value="0">0</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="5">5</option>

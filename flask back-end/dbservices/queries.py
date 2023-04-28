@@ -103,6 +103,16 @@ on T.TaskNum=A.TaskNum;
 """
 
 
+# Story poker queries
+
+# q_delete_SP = """
+# delete
+# from SP
+# where Email=_x;
+# """
+
+drop_table = """DROP TABLE `SP`"""
+
 SP_init = """
 create table `AGDev43`.`SP`(
   `Email` varchar(200) not null,
@@ -112,6 +122,8 @@ create table `AGDev43`.`SP`(
   primary key (`Email`)
 );
 """
+#sp init
+SPINIT_combined = drop_table+SP_init
 
 q_get_t1 = """
 select t1
@@ -124,12 +136,6 @@ q_get_full_SP = """
 select Email, Answer
 from SP
 where StoryName = _x;
-"""
-
-q_delete_SP = """
-delete
-from SP
-where Email=_x;
 """
 
 q_insert_new_SP_row = """

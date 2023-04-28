@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import StoryPoker from "./components/storypoker_component/StoryPoker";
 import QuestionPage from "./components/storypoker_component/QuestionPage";
 import ResultsPage from "./components/storypoker_component/ResultsPage";
+import SPChoice from "./components/storypoker_component/SPChoice";
 
 
 
@@ -27,6 +28,7 @@ function Home() {
         <Route exact path='/storypoker' element={<StoryPoker />} />
         <Route path='/storypoker/question' element={<QuestionPage/>} />
         <Route path='/storypoker/results' element={<ResultsPage/>} />
+        <Route path='/spchoice' element={<SPChoice/>} />
 
       </Routes>
     </div>

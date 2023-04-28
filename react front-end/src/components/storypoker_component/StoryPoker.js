@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './style.css';
 import Cookies from 'js-cookie';
+import { SERVER_URL } from '../../configdata.js';
+
 
 let question = "";
 let assigned_user = "";
 //used for keep track of assigned users
 const assigned_users = [];
-var index = 0;
 
 function StoryPoker() {
 
@@ -51,33 +52,65 @@ function StorypokerComp() {
 	  question = input;
 	  setUpdated(message);
 	  // alert("Your question is " + input)
+		createSP();
 	};
 
-	const handleClick2 = () => {
-		// 👇 "message" stores input field value
-		var input = document.getElementById("users").value;
-		assigned_user = input;
-		assigned_users.push(assigned_user)//add the input user to the assigned_user array
-		// setAssign(users);
-		// alert("The user you assigned is " + input)
-		document.getElementById("user_list").innerHTML = assigned_users;
-	};
 
 	const submitQuestion = () => {
 
 		console.log(assigned_users);
 		console.log(message);
+		Cookies.set('message', message);
+		Cookies.set('assigned_users', assigned_users);
 		console.log(Cookies.get('user_email'))
 		//TODO: make api call to flask to insert question
 		// alert("make flask sql queries: delete all, insert new records")
+		
+		insertSP();
 	}
 
-	const handleClick3 = () => {
-		// 👇 "message" stores input field value
-		assigned_users.length = 0
-		// alert("All assigned users are cleared")
-		document.getElementById("user_list").innerHTML = assigned_users;
-	};
+	async function createSP() {
+    return fetch(SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query: "drop table if exists `SP`;create table `AGDev43`.`SP`(`Email` varchar(200) not null, `StoryName` varchar(500) not null,`Answer` int,`T1` datetime not null,primary key (`Email`));",
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+  }
+
+	async function insertSP() {
+		var query = "insert into SP (Email, StoryName, Answer, T1) values ('"+"submission@storypoker.com"+"','"+Cookies.get('message')+"', null, NOW());";
+		console.log(query);
+
+    return fetch(SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query: "insert into SP (Email, StoryName, Answer, T1) values ('"+"submission@storypoker.com	"+"','"+Cookies.get('message')+"', null, NOW());",
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+  }
 
 	return (
 
@@ -107,13 +140,9 @@ function StorypokerComp() {
 					placeholder='Enter user email one at a time: sally@sprints.com'
 				/>	  
 			<div className="button-container">
-			<button  onClick={handleClick2}>Add</button>
-			<button style={{margin:"10px"}} onClick={handleClick3}>Clear</button>
 			</div>
 
-			<h2 >Assigned Users: </h2>
-
-			<h2 id="user_list"></h2>
+			{/* <h2 >Assigned Users: </h2> */}
 			
 			<Link to="/storypoker/question">
 					<button style={{width: "11rem"}} onClick={submitQuestion}>Present question</button>

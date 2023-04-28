@@ -19,7 +19,7 @@ function NavBar() {
             </a>
           </li>
           <li>
-            <a className="nav-link" href="/storypoker">
+            <a className="nav-link" href="/spchoice">
               Story Poker
             </a>
           </li>
