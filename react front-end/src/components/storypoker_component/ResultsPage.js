@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { hour_needed } from './QuestionPage.js';
 import './style.css';
 import { SERVER_URL } from '../../configdata.js';
+import { question2 } from './QuestionPage.js';
 
 const ResultsPage = () => {
   const [results, setResults] = useState([]);
@@ -33,7 +34,7 @@ const ResultsPage = () => {
   return (
     <div className='component-div'>
       <h1>Results</h1>
-      <h2 style={{ marginBlock: '6%', color: 'blue' }}>User story: {}</h2>
+      <h2 style={{ marginBlock: '6%', color: 'blue' }}>User story: {question2}</h2>
       {results.map((result, index) => (
         <div key={index}>
           <h2>

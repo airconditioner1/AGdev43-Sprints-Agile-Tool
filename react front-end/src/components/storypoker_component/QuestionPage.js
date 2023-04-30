@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 
 var hour_needed;
 var email = Cookies.get('user_email');
+var question2;
 
 const QuestionPage = () => {
 	const [updated, setUpdated] = useState('?');
@@ -59,6 +60,7 @@ const QuestionPage = () => {
       setQuestion(response[0].StoryName);
     });
     console.log(question);
+    question2 = question;
   
   }
 
@@ -87,5 +89,5 @@ return (
 );
 };
 
-export {hour_needed}
+export {question2}
 export default QuestionPage;
