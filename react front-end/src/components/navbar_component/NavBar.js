@@ -28,6 +28,11 @@ function NavBar() {
               Chatroom
             </a>
           </li>
+          <li>
+            <a className="nav-link" href="/education-page">
+              Agile/DevOps Education
+            </a>
+          </li>
         </ul>
         <div className="cta">
           <h3></h3>
