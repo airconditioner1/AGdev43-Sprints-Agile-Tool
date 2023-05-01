@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./components/app_taskboard_component/App";
 import DummyPage from "./components/chatroom_component/Chatroom";
 import NavBar from "./components/navbar_component/NavBar";
+import Education from "./components/education_component/App"
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./components/login_component/LoginPage";
 import HomeScreen from "./components/home_component/HomeScreen";
@@ -48,6 +49,7 @@ function Home() {
         <Route path="/" element={<HomeScreen />}></Route>
         <Route path="/app-page" element={<App />}></Route>
         <Route path="/dummy-page" element={<DummyPage />}></Route>
+        <Route path="/education-page" element={<Education />}></Route>
         <Route path="/login-page" element={<LoginPage setUser={setUser} user={user} setProfile={setProfile} profile={profile} setIsLoggedIn={setIsLoggedIn}/>}></Route> // Pass setUser, user, profile setIsLoggedIn as a prop to LoginPage
         <Route exact path='/storypoker' element={<StoryPoker />} />
         <Route path='/storypoker/question' element={<QuestionPage/>} />
