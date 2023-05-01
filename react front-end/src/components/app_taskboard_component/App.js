@@ -58,7 +58,7 @@ function TaskForm({ onSubmit, setTasks }) {
     //check if all fields is filled before sending the request
      //testing
     
-     if (title === "" || dueDate === "" || hours === "" || users === "" ){
+     if (title === "" || dueDate === "" || hours == 0 || users === "" ){
       alert("Please filled the form correctly !")
       return;
     }   
@@ -187,7 +187,7 @@ function TaskForm({ onSubmit, setTasks }) {
   function handleSubmit(event) {
     //testing 
     // submit the form only when all the fiels are filled in  
-    if (title === "" || dueDate === "" || hours === "" || users === ""){
+    if (title === "" || dueDate === "" || hours == 0 || users === ""){
       event.preventDefault();
     }
     else{
