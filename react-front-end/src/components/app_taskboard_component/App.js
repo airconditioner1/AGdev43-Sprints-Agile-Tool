@@ -2,7 +2,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from "js-cookie";
 import "./taskboard.css";
-import { SERVER_URL } from "../../configdata";
+import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
+
 
 function TaskForm({ onSubmit, setTasks }) {
   const [title, setTitle] = useState("");
@@ -11,8 +12,12 @@ function TaskForm({ onSubmit, setTasks }) {
   const [hours, setHours] = useState("0");
   const [dueDate, setDueDate] = useState("");
 
+  loadTasks();
+
   function dbstuff() {
-    return fetch(SERVER_URL, {
+    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
+      
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +26,7 @@ function TaskForm({ onSubmit, setTasks }) {
       body: JSON.stringify({
         hostname: "agdev-db",
         portnum: "3306",
-        query: "select * from Task;", 
+        query: "select * from Task;",
         user: "root",
         password: "mc",
         database: "AGDev43",
@@ -48,8 +53,31 @@ function TaskForm({ onSubmit, setTasks }) {
     });
     sleep();
   }
+
   function dbstuffSend() {
-    return fetch(SERVER_URL, {
+     if (title === "" || dueDate === "" || hours == 0 || users === "" ){
+      alert("Please filled the form correctly !")
+      return;
+    }   
+    console.log(dueDate);
+    console.log(title);
+
+    console.log(
+      "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
+        "VALUES (NULL , 8,'" +
+        title +
+        "','" +
+        users +
+        "','" +
+        dueDate +
+        "','" +
+        hours +
+        "','" +
+        priority +
+        "', NULL, NULL, NULL, '')"
+    );
+
+    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,15 +109,81 @@ function TaskForm({ onSubmit, setTasks }) {
       .then((response) => response.json())
       .catch((error) => console.error(error));
   }
-  
+  function dbDelete() {
+    let title = prompt("Enter the title for the deleting task: ");
+
+      if(title===null){
+        return;
+      }
+
+      let input_query = `DELETE FROM Task WHERE \`Task\`.\`Title\` = '${title}'`;
+      alert("If you input the title and users correctly, the row is deleted, nothing otherwise ");
+      return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "anything",
+        },
+        body: JSON.stringify({
+          hostname: "agdev-db",
+          portnum: "3306",
+          query: input_query,
+          user: "root",
+          password: "mc",
+          database: "AGDev43",
+        }),
+      })
+        .then((response) => response.json())
+        .catch((error) => console.error(error));
+  }
+  function dbEdit(){
+    alert("modifying task!");
+    let oldTitle = prompt("Enter the Old Title: "); // the value of the "Title" column in the row you want to update
+    let oldDesc = prompt("Enter the Old assigned users: "); // the value of the "Desc" column in the row you want to update
+
+    let newTitle = prompt("Enter the NEW Title (or blank to not change): "); // the new value for the "Title" column
+    let newDesc = prompt("Enter the NEW assigned users (or blank to not change)[seperated by commas]: ");  // the new value for the "Desc" column
+    let input_query = `UPDATE Task SET \`Desc\` = '${newDesc}', \`Title\` = '${newTitle}' WHERE \`Desc\` = '${oldDesc}' AND \`Title\` = '${oldTitle}'`;
+    
+    // Execute the query using your database connection
+    
+    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query: input_query,//to_do
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+  }
+
   function handleSubmit(event) {
-    event.preventDefault();
-    onSubmit({ title, priority, users: users.split(","), hours, dueDate });
-    setTitle("");
-    setPriority("medium");
-    setHours("0");
-    setUsers("");
-    setDueDate("")
+    //testing 
+    // submit the form only when all the fiels are filled in  
+    if (title === "" || dueDate === "" || hours == 0 || users === ""){
+      event.preventDefault();
+    }
+    else{
+      event.preventDefault();
+      onSubmit({ title, priority, users: users.split(","), hours, dueDate });
+      
+
+      setTitle("");
+      setPriority("medium");
+      setHours("0");
+      setUsers("");
+      setDueDate("")
+    }
+    
   }
 
   return (
@@ -97,7 +191,6 @@ function TaskForm({ onSubmit, setTasks }) {
       <form onSubmit={handleSubmit}>
         <div>
           <p>Logged in: {Cookies.get("user_email")}</p>
-          <p>Username: {Cookies.get("username")}</p>
           <h1>Task Manager</h1>
           <br></br>
           <label
@@ -152,7 +245,6 @@ function TaskForm({ onSubmit, setTasks }) {
               onChange={(event) => setHours(event.target.value)}
             >
               <option value="0">0</option>
-              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="5">5</option>
@@ -185,6 +277,18 @@ function TaskForm({ onSubmit, setTasks }) {
           </button>
           <button
             className="btn btn-primary"
+            onClick={dbDelete}
+          >
+            Delete Task
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={dbEdit}
+          >
+            Modify Task
+          </button>
+          <button
+            className="btn btn-primary"
             style={{ margin: 10 }}
             onClick={loadTasks}
           >
@@ -198,6 +302,42 @@ function TaskForm({ onSubmit, setTasks }) {
 }
 
 function TaskTable({ tasks }) {
+  const [sortField, setSortField] = useState(null);
+  const [sortDirection, setSortDirection] = useState('asc');
+
+  const sortTasks = (field) => {
+    if (field === sortField) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortIcon = (field) => {
+    if (field === sortField) {
+      return sortDirection === 'asc' ? <FaSortUp /> : <FaSortDown />;
+    } else {
+      return <FaSort />;
+    }
+  };
+
+  const sortedTasks = tasks.sort((a, b) => {
+    if (sortField) {
+      const fieldValueA = a[sortField];
+      const fieldValueB = b[sortField];
+      if (fieldValueA < fieldValueB) {
+        return sortDirection === 'asc' ? -1 : 1;
+      } else if (fieldValueA > fieldValueB) {
+        return sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  });
+
   return (
     <div className="container p-4">
       <div>
@@ -206,22 +346,35 @@ function TaskTable({ tasks }) {
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Priority</th>
-            <th>Hours</th>
-            <th>Users</th>
-            <th>Due Date</th>
-            <th>Status</th>
+            <th onClick={() => sortTasks('Title')}>
+              Title {getSortIcon('Title')}
+            </th>
+            <th onClick={() => sortTasks('Priority')}>
+              Priority {getSortIcon('Priority')}
+            </th>
+            <th onClick={() => sortTasks('Hours')}>
+              Hours {getSortIcon('Hours')}
+            </th>
+            <th onClick={() => sortTasks('Desc')}>
+              Users {getSortIcon('Desc')}
+            </th>
+            <th onClick={() => sortTasks('DueDate')}>
+              Due Date {getSortIcon('DueDate')}
+            </th>
+            <th onClick={() => sortTasks('Status')}>
+              Status {getSortIcon('Status')}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task, index) => (
+          {sortedTasks.map((task, index) => (
             <tr key={index}>
               <td>{task.Title}</td>
               <td>{task.Priority}</td>
               <td>{task.Hours}</td>
               <td>{task.Desc}</td>
               <td>{task.DueDate}</td>
+              <td>{task.Status}</td>
             </tr>
           ))}
         </tbody>
@@ -229,6 +382,39 @@ function TaskTable({ tasks }) {
     </div>
   );
 }
+
+// function TaskTable({ tasks }) {
+//   return (
+//     <div className="container p-4">
+//       <div>
+//         <h1 style={{ marginTop: 150 }}>Tasks Table</h1>
+//       </div>
+//       <table className="table table-bordered table-striped">
+//         <thead>
+//           <tr>
+//             <th>Title</th>
+//             <th>Priority</th>
+//             <th>Hours</th>
+//             <th>Users</th>
+//             <th>Due Date</th>
+//             <th>Status</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {tasks.map((task, index) => (
+//             <tr key={index}>
+//               <td>{task.Title}</td>
+//               <td>{task.Priority}</td>
+//               <td>{task.Hours}</td>
+//               <td>{task.Desc}</td>
+//               <td>{task.DueDate}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
 
 function App() {
   const [tasks, setTasks] = useState([]);
