@@ -42,6 +42,7 @@ function SignUp({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
         )
         .then((res) => {
           setProfile(res.data);
+          Cookies.set("profile_img", res.data.picture);
           Cookies.set("user_email", res.data.email);
           Cookies.set('authenticated', 'true')
         })
