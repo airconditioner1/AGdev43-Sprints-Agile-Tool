@@ -32,16 +32,18 @@ const ResultsPage = () => {
   }, []);
 
   return (
+    <div style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
     <div className='component-div'>
-      <h1>Results</h1>
-      <h2 style={{ marginBlock: '6%', color: 'blue' }}>User story: {question2}</h2>
+      <h1 className="h1SP">Results</h1>
+      <h2 className="h2SP" >User story: {question2}</h2>
       {results.map((result, index) => (
         <div key={index}>
-          <h2>
+          <h2 className="h2Results">
             {result.Email}: {result.Answer}
           </h2>
         </div>
       ))}
+    </div>
     </div>
   );
 };

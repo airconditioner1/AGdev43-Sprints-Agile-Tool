@@ -35,9 +35,12 @@ const Chatroom = () => {
   };
 
   return (
+    <div>
+
     <div className="chatroom-container">
+      
       <div className="chat-container">
-        <h1>Chatroom</h1>
+        
         <div className="messages-box">
         <ScrollToBottom >
           <div className="scrollauto-box">
@@ -67,9 +70,10 @@ const Chatroom = () => {
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button className="buttonStyleChat" type="submit">Send</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };
@@ -77,27 +81,16 @@ const Chatroom = () => {
 function DummyPage() {
   console.log(Cookies.get("authenticated"));
   return (
-    <div>
+    <div style={{ backgroundColor: " rgb(36, 10, 78)", minHeight: "100vh" }}>
+      <div className='component-div'>
+      <h1 className="h1">Chatroom</h1>
+      
+
+      </div>
       <Chatroom />
+      
     </div>
   );
-
-  // if(Cookies.get('authenticated') === 'true'){
-  //   console.log("AUTHENTICATED");
-  //   return (
-  //     <div>
-  //       <Chatroom />
-  //     </div>
-  //   );
-  // }
-  // else{
-  //   console.log(Cookies.get('authenticated'));
-  //   return (
-  //     <div>
-  //       <h1 style={{ color: "red" }}>Please sign into sprints to access Chat!</h1>
-  //     </div>
-  //   )
-  // }
 }
 
 export default DummyPage;

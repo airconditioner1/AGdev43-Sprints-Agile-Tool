@@ -25,14 +25,14 @@
 }
 
 .message-bubble.sent {
-  background-color: #1e90ff;
+  background-color: #4a096d;
   color: white;
   border-bottom-right-radius: 5px;
 }
 
 .message-bubble.received {
-  background-color: lightgray;
-  color: black;
+  background-color: #f1dffa;
+  color: #240a4e;
   border-bottom-left-radius: 5px;
 }
 
@@ -40,7 +40,7 @@
   margin: 0 10px;
   justify-content: center;
   align-items: center;
-  outline: #1e90ff;
+  outline: #f9deff;
 }
 
 @media screen and (min-width: 768px) {
@@ -51,4 +51,40 @@
 
 .scrollauto-box{
   max-height: 100%;
+}
+
+.h1SP {
+  font-size: 45px;
+  font-weight: bold;
+  font-family: 'Kumbh Sans', sans-serif;
+  color: #f1dffa;
+
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+.h1 {
+  letter-spacing: 10px;
+  margin: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+.buttonStyleChat
+{
+  letter-spacing: 1px;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 500;
+  font-size:large;
+  cursor: pointer;
+  background-color: #f9deff;
+  box-shadow: var(--box-shadow);
+  color: #240a4e;
+  margin-top: 20px;
+  margin: 15px;
+  width: fit-content;
+
 }

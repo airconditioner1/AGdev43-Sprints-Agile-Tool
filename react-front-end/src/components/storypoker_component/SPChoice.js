@@ -33,16 +33,16 @@ function StoryPokerChoice() {
   return (
     <div style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
     <div  className="component-div" >
-      <h1>story poker</h1>
+      <h1 className="h1SP"  >story poker</h1>
 
       <div className="button-container">
         <Link to="/storypoker">
-        <button style={{ width: "11rem" }} onClick={handleClick}>
+        <button className="buttonStyleSP" style={{ margin: "30px" }} onClick={handleClick}>
           Present Question
         </button>
       	</Link>
         <Link to="/storypoker/question">
-        <button style={{ width: "11rem" }} onClick={handleClick}>
+        <button className= "buttonStyleSP" style={{ margin: "30px" }} onClick={handleClick}>
           Answer question
         </button>
       </Link>

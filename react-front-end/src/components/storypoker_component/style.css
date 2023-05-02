@@ -1,16 +1,31 @@
-/* Styling for h1 */
-h1 {
-  font-size: 36px;
+
+.h1SP {
+  font-size: 45px;
   font-weight: bold;
-  text-align: center;
-  color: #333333;
+  font-family: 'Kumbh Sans', sans-serif;
+  color: #201625;
+  margin-top: 70px;
+  margin-bottom: 20px;
 }
 
 /* Styling for h2 */
-h2 {
-  font-size: 24px;
+.h2SP {
+  font-size: 30px;
   font-weight: bold;
-  color: #666666;
+  font-family: 'Kumbh Sans', sans-serif;
+  color: #5d0b89;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+/* Styling for h2 */
+.h2Results {
+  font-size: 25;
+  font-weight: bold;
+  font-family: 'Kumbh Sans', sans-serif;
+  color: #2d0343;
+  margin-top: 25px;
+  margin-bottom: 30px;
 }
 
 /* Styling for p */
@@ -70,6 +85,34 @@ button {
   margin-top: 3%;
 }
 
-/* input{
-  margin-top: 1rem;
-} */
+.buttonStyleSP
+{
+  letter-spacing: 1px;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 500;
+  font-size:large;
+  cursor: pointer;
+  background-color: #5d0b89;
+  box-shadow: var(--box-shadow);
+  color: #f6f2f7;
+  border: 0;
+  width: 250px;
+  height: 100px;
+
+}
+
+.buttonNormalStyleSP
+{
+  letter-spacing: 1px;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 500;
+  font-size:large;
+  cursor: pointer;
+  background-color: #5d0b89;
+  box-shadow: var(--box-shadow);
+  color: #f6f2f7;
+  margin-top: 20px;
+  margin: 15px;
+  width: fit-content;
+
+}

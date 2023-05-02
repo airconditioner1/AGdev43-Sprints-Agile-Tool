@@ -134,10 +134,10 @@ function StorypokerComp() {
   }
 
 	return (
-
+		<div  style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
 		<div className='component-div'>
-		<h1>story poker</h1>
-		<h2>Enter a User Story: </h2>
+		<h1 className="h1SP">story poker</h1>
+		<h2 className="h2SP">Enter a User Story: </h2>
 		<input
 					type="text"
 					id="message"
@@ -148,23 +148,12 @@ function StorypokerComp() {
 				/>
 				
 			<Link to="/storypoker/question">
-				<button style={{marginBottom:"2%"}} onClick={handleClick}>Present Question</button>
+				<button className= "buttonNormalStyleSP"style={{marginBottom:"2%"}} onClick={handleClick}>Present Question</button>
 			</Link>
-
-			{/* <h2 style={{marginBlock:"2%"}}>{"Current question: "+updated}</h2>
-			<h2>Assign Users to answer:</h2>
-
-			<input
-					type="text"
-					id="users"
-					name="users"
-					onChange={handleUsers}
-					value={users}
-					placeholder='Enter user email one at a time: sally@sprints.com'
-				/> */}
 
 			<div className="button-container">
 			</div>
+		</div>
 		</div>
 
 	);

@@ -77,9 +77,10 @@ const QuestionPage = () => {
 
 
 return (
+  <div style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
 	<div className="component-div">
-	<h1 style={{margin:"5%"}}>User story:{question}</h1>
-	<h2 style={{marginTop:"2%"}}>How long will this story take to build? </h2>
+	<h1 className="h1SP" style={{margin:"5%"}}>User story:{question}</h1>
+	<h2 className="h2SP"style={{marginTop:"2%"}}>How long will this story take to build? </h2>
     <input
           // ref={inputRef}
           type="number"
@@ -87,15 +88,18 @@ return (
           placeholder="1, 2, 3, 5, 8, 13, 21.."
         />
 
-      <h2 style={{marginTop:"5%"}}>Your Answer {email}: {updated} hr</h2>
+      <h2 className="h2SP" style={{marginTop:"5%"}}>Your Answer {email}: {updated} hr</h2>
 
       <div className="button-container">
-        <button onClick={handleClick}>Submit</button>
+        <button className= "buttonNormalStyleSP" onClick={handleClick}>Submit</button>
         <Link to="/storypoker/results">
-        <button style={{marginLeft:"2%"}} onClick={getResultsDB}>Results➡</button>
+        <button className= "buttonNormalStyleSP"  onClick={getResultsDB}>Results ➡</button>
       </Link>      </div>
 
 	</div>
+  </div>
+  
+
 );
 };
 
