@@ -130,10 +130,14 @@ input[type="number"] {
 
 .display-container {
   display: flex;
-  flex-wrap: wrap;  
+  flex-wrap: wrap; 
+  height: 100vh; 
 }
 
-
+.display-container1 {
+  flex: 1;  
+  height: 100vh;
+}
  
 .Form {
   flex: 1 1 25%;

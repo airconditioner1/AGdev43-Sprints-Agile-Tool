@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
+
 
 /**
  * 
@@ -12,7 +14,7 @@ import Cookies from "js-cookie";
  * @returns navbar display based on whether use is login in or not
  */
 function NavBar({ user, onLogout, profile, isLoggedIn }) {
-
+  
   return (
     <header>
       <nav className="navbar navbar-inverse fixed-left">
@@ -41,7 +43,7 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
               </li>
               <li>
                 <Link to="/education-page" className="nav-link">
-                  Agile / DevOps Education
+                  AgileEdu
                 </Link>
               </li>
             </>
@@ -56,19 +58,12 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
         <div className="cta">
           {isLoggedIn ? ( // if we have logined, display user image and logout button
             <>
-              <img src={Cookies.get("profile_img")} alt="user" />
+              <img src={Cookies.get("profile_img")} alt="user" style={{height: 75, borderRadius: 50}}/>
               <button onClick={onLogout}>Logout</button>
             </>
-          ) : ( // else, display login and signup button
-            <>
-              <h3></h3>
-              {/* <Link to="/login-page" className="nav-link">
-                <button>Login</button>
-              </Link>
-              <Link to="/signup-page" className="nav-link">
-                <button>Sign up</button>
-              </Link> */}
-            </>
+          ) : ( 
+          <>
+          </>
           )}
         </div>
       </nav>

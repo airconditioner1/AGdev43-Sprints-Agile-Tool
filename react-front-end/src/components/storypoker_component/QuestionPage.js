@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SERVER_URL } from "../../configdata";
 import './style.css';
@@ -64,7 +64,17 @@ const QuestionPage = () => {
   
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadQuestion();
+    }, 5000); // Change this value to adjust the auto-reload interval (in milliseconds)
+  
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
+  }, [loadQuestion]);
   loadQuestion();
+
 
 return (
 	<div className="component-div">

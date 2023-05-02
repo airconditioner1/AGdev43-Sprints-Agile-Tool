@@ -1,83 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from "js-cookie";
 import "./taskboard.css";
+import { SERVER_URL } from "../../configdata";
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 
 
-function TaskForm({ onSubmit, setTasks }) {
+function dbstuff() {
+  return fetch(SERVER_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "anything",
+    },
+    body: JSON.stringify({
+      hostname: "agdev-db",
+      portnum: "3306",
+      query: "select * from Task;",
+      user: "root",
+      password: "mc",
+      database: "AGDev43",
+    }),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
+}
+
+function sleep() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
+}
+
+
+function TaskForm({ onSubmit, setTasks, loadTasks }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("medium");
   const [users, setUsers] = useState("");
   const [hours, setHours] = useState("0");
   const [dueDate, setDueDate] = useState("");
 
-  loadTasks();
-
-  function dbstuff() {
-    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
-      
-
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "anything",
-      },
-      body: JSON.stringify({
-        hostname: "agdev-db",
-        portnum: "3306",
-        query: "select * from Task;",
-        user: "root",
-        password: "mc",
-        database: "AGDev43",
-      }),
-    })
-      .then((response) => response.json())
-      .catch((error) => console.error(error));
-  }
-
-  function sleep() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
-  }
-
-  function loadTasks() {
-    let iterator = dbstuff();
-    const promise = Promise.resolve(iterator);
-    promise.then((response) => {
-      var tasks = response;
-      setTasks(tasks); // update state with fetched data
-    });
-    sleep();
-  }
-
   function dbstuffSend() {
-     if (title === "" || dueDate === "" || hours == 0 || users === "" ){
-      alert("Please filled the form correctly !")
-      return;
-    }   
-    console.log(dueDate);
-    console.log(title);
-
-    console.log(
-      "INSERT INTO `Task` (`TaskNum`, `PNum`, `Title`, `Desc`, `DueDate`, `Hours`, `Priority`, `Status`, `Sprint`, `DateCreated`, `CreatorEmail`)" +
-        "VALUES (NULL , 8,'" +
-        title +
-        "','" +
-        users +
-        "','" +
-        dueDate +
-        "','" +
-        hours +
-        "','" +
-        priority +
-        "', NULL, NULL, NULL, '')"
-    );
-
-    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
+    return fetch(SERVER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -109,82 +75,18 @@ function TaskForm({ onSubmit, setTasks }) {
       .then((response) => response.json())
       .catch((error) => console.error(error));
   }
-  function dbDelete() {
-    let title = prompt("Enter the title for the deleting task: ");
-
-      if(title===null){
-        return;
-      }
-
-      let input_query = `DELETE FROM Task WHERE \`Task\`.\`Title\` = '${title}'`;
-      alert("If you input the title and users correctly, the row is deleted, nothing otherwise ");
-      return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "anything",
-        },
-        body: JSON.stringify({
-          hostname: "agdev-db",
-          portnum: "3306",
-          query: input_query,
-          user: "root",
-          password: "mc",
-          database: "AGDev43",
-        }),
-      })
-        .then((response) => response.json())
-        .catch((error) => console.error(error));
-  }
-  function dbEdit(){
-    alert("modifying task!");
-    let oldTitle = prompt("Enter the Old Title: "); // the value of the "Title" column in the row you want to update
-    let oldDesc = prompt("Enter the Old assigned users: "); // the value of the "Desc" column in the row you want to update
-
-    let newTitle = prompt("Enter the NEW Title (or blank to not change): "); // the new value for the "Title" column
-    let newDesc = prompt("Enter the NEW assigned users (or blank to not change)[seperated by commas]: ");  // the new value for the "Desc" column
-    let input_query = `UPDATE Task SET \`Desc\` = '${newDesc}', \`Title\` = '${newTitle}' WHERE \`Desc\` = '${oldDesc}' AND \`Title\` = '${oldTitle}'`;
-    
-    // Execute the query using your database connection
-    
-    return fetch("https://bf31-128-105-37-247.ngrok-free.app/post/variables", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "anything",
-      },
-      body: JSON.stringify({
-        hostname: "agdev-db",
-        portnum: "3306",
-        query: input_query,//to_do
-        user: "root",
-        password: "mc",
-        database: "AGDev43",
-      }),
-    })
-      .then((response) => response.json())
-      .catch((error) => console.error(error));
-  }
 
   function handleSubmit(event) {
-    //testing 
-    // submit the form only when all the fiels are filled in  
-    if (title === "" || dueDate === "" || hours == 0 || users === ""){
-      event.preventDefault();
-    }
-    else{
-      event.preventDefault();
-      onSubmit({ title, priority, users: users.split(","), hours, dueDate });
-      
-
-      setTitle("");
-      setPriority("medium");
-      setHours("0");
-      setUsers("");
-      setDueDate("")
-    }
-    
+    event.preventDefault();
+    onSubmit({ title, priority, users: users.split(","), hours, dueDate });
+    setTitle("");
+    setPriority("medium");
+    setHours("0");
+    setUsers("");
+    setDueDate("");
   }
+
+  
 
   return (
     <div className="container p-5">
@@ -246,6 +148,7 @@ function TaskForm({ onSubmit, setTasks }) {
               onChange={(event) => setHours(event.target.value)}
             >
               <option value="0">0</option>
+              <option value="0">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="5">5</option>
@@ -275,26 +178,14 @@ function TaskForm({ onSubmit, setTasks }) {
             onClick={dbstuffSend}
           >
             Add Task
-          </button>
-          <button
-            className="buttonStyle"
-            onClick={dbDelete}
-          >
-            Delete Task
-          </button>
-          <button
-            className="buttonStyle"
-            onClick={dbEdit}
-          >
-            Modify Task
-          </button>
+          </button> 
           <button
             className="buttonStyle"
             style={{ margin: 10 }}
             onClick={loadTasks}
           >
             {" "}
-            Load tasks{" "}
+            Reload{" "}
           </button>
         </div>
       </form>
@@ -302,9 +193,82 @@ function TaskForm({ onSubmit, setTasks }) {
   );
 }
 
-function TaskTable({ tasks }) {
+
+
+
+function handleDeleteTask(task){
+  console.log(task.Title);
+  dbDelete(task.Title);
+
+}
+function handleEditTask(task){
+console.log(task.Title);
+dbEdit(task);
+}
+
+function dbEdit(task){
+  alert("modifying task!");
+  // the value of the "Title" column in the row you want to update
+  // let oldDesc = prompt("Enter the Old assigned users: "); // the value of the "Desc" column in the row you want to update
+  let oldTitle = task.Title;
+  let oldDesc = task.Desc;
+  let newTitle = prompt("Enter the NEW Title (or blank to not change): "); // the new value for the "Title" column
+  let newDesc = prompt("Enter the NEW users (or blank to not change)[seperated by commas]: ");  // the new value for the "Desc" column
+  if(newTitle===null){
+    newTitle = oldTitle;
+  }
+  if(newDesc === null){
+    newDesc = oldDesc;
+  }
+  let input_query = `UPDATE Task SET \`Desc\` = '${newDesc}', \`Title\` = '${newTitle}' WHERE \`Title\` = '${oldTitle}'`;
+
+  // Execute the query using your database connection
+
+  return fetch(SERVER_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "anything",
+    },
+    body: JSON.stringify({
+      hostname: "agdev-db",
+      portnum: "3306",
+      query: input_query,//to_do
+      user: "root",
+      password: "mc",
+      database: "AGDev43",
+    }),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
+}
+
+function dbDelete(taskTitle) {
+    let input_query = `DELETE FROM Task WHERE \`Task\`.\`Title\` = '${taskTitle}'`;
+    alert(`Deleting task titled: ${taskTitle}`);
+    return fetch(SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "anything",
+      },
+      body: JSON.stringify({
+        hostname: "agdev-db",
+        portnum: "3306",
+        query: input_query,
+        user: "root",
+        password: "mc",
+        database: "AGDev43",
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+}
+
+function TaskTable({ tasks, onEditTask, onDeleteTask }) {
   const [sortField, setSortField] = useState(null);
   const [sortDirection, setSortDirection] = useState('asc');
+
 
   const sortTasks = (field) => {
     if (field === sortField) {
@@ -342,7 +306,7 @@ function TaskTable({ tasks }) {
   return (
     <div className="container-fluid">
       <div>
-        <h1 className="h1" style={{ marginTop: 150 }}>Tasks Table</h1>
+        <h1 className="h1" style={{ marginTop: 150, marginBottom: 100 }}>Tasks Table</h1>
       </div>
       <table margin="30px" className="table table-bordered">
         <thead>
@@ -362,9 +326,8 @@ function TaskTable({ tasks }) {
             <th  className="formstuff" onClick={() => sortTasks('DueDate')}>
               Due Date {getSortIcon('DueDate')}
             </th>
-            <th className="formstuff" onClick={() => sortTasks('Status')}>
-              Status {getSortIcon('Status')}
-            </th>
+            <th className="formstuff">Edit</th>
+            <th className="formstuff">Delete</th>{" "}
           </tr>
         </thead>
         <tbody>
@@ -375,7 +338,23 @@ function TaskTable({ tasks }) {
               <td className="formstuff">{task.Hours}</td>
               <td className="formstuff">{task.Desc}</td>
               <td className="formstuff">{task.DueDate}</td>
-              <td className="formstuff">{task.Status}</td>
+              <td>
+                <button
+                  className="btn"
+                  style={{width:30}}
+                  onClick={() => handleEditTask(task)}
+                >
+                ✍️
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDeleteTask(task)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -386,6 +365,26 @@ function TaskTable({ tasks }) {
 
 function App() {
   const [tasks, setTasks] = useState([]);
+
+  function loadTasks() {
+    let iterator = dbstuff();
+    const promise = Promise.resolve(iterator);
+    promise.then((response) => {
+      var tasks = response;
+      setTasks(tasks); // update state with fetched data
+    });
+    sleep();
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadTasks();
+    }, 1000); // Change this value to adjust the auto-reload interval (in milliseconds)
+  
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
+  }, [loadTasks]);
 
   function handleTaskSubmit(task) {
     setTasks([
@@ -407,27 +406,18 @@ function App() {
   };
 
   if (Cookies.get("authenticated") === "true") {
-    // return (
-    //   <div class="display-container">
-    //     <div class="Form">
-    //       <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
-    //     </div>
-    //     <div class="Table">
-    //       <TaskTable tasks={tasks} />
-    //     </div>
-    //   </div>
-    // );
     return (
       <div className="display-container">
         <button onClick={toggleTaskForm}>Toggle TaskForm</button>
         {showTaskForm && (
           <div className="Form">
-            <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
+            <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} loadTasks={loadTasks} />
           </div>
         )}
         <div className="Table">
-          <TaskTable tasks={tasks} />
+        <TaskTable tasks={tasks} onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} />
         </div>
+
       </div>
     );
   } else {
