@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import CookieBanner from "./CookieBanner";
+import { Link } from "react-router-dom";
 
 function Homepage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
   
@@ -59,7 +60,10 @@ function Homepage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
           
           <div class="horizontal-center" style={{
              backgroundColor: "#6ae6a7"
-           }}> <button onClick={() => login()} className="button">Sign In </button>
+           }}>
+            <Link to="/app-page">
+            <button onClick={() => login()} className="button">Sign In </button>
+            </Link>
           </div>
       <img style={{ width: "100%", height: "100%", position: "relative" }} src={Description1 } />
       <img style={{ width: "100%", height: "100%", position: "relative" }} src={Description2 } />

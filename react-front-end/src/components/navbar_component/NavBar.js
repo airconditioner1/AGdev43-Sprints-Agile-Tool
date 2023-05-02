@@ -59,7 +59,9 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
           {isLoggedIn ? ( // if we have logined, display user image and logout button
             <>
               <img src={Cookies.get("profile_img")} alt="user" style={{height: 75, borderRadius: 50}}/>
-              <button onClick={onLogout}>Logout</button>
+              <Link to="/">
+                <button onClick={onLogout}>Logout</button>
+              </Link>
             </>
           ) : ( 
           <>
