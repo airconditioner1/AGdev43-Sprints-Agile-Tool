@@ -44,17 +44,21 @@ function App() {
   ];
 
   return (
-    <div className="container">
-      <h1>Agile and DevOps Resources</h1>
-      <h2>Agile</h2>
-      <ul>
+    <div style={{ backgroundColor: "#f9deff", minHeight: "100vh" }}>
+    <div className="container"  >
+      <h1 className='h1Heading'>Agile and DevOps Resources</h1>
+      <div className='agileSection'>
+      <h2 className='h1Agile'>Agile</h2>
+      <ul >
         {agileResources.map(resource => (
           <li key={resource.url}>
             <a href={resource.url} target="_blank" rel="noreferrer">{resource.name}</a> - {resource.description}
           </li>
         ))}
       </ul>
-      <h2>DevOps</h2>
+      </div>
+      <div className='devSection'>
+      <h2 className='h1Devops'>DevOps</h2>
       <ul>
         {devopsResources.map(resource => (
           <li key={resource.url}>
@@ -62,6 +66,8 @@ function App() {
           </li>
         ))}
       </ul>
+      </div>
+    </div>
     </div>
   );
 }

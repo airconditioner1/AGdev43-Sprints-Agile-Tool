@@ -18,7 +18,7 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
   return (
     <header>
       <nav className="navbar navbar-inverse fixed-left">
-        <ul>
+        <ul className="menu-wrap">
           {isLoggedIn ? (
             <>
               <li>
@@ -54,13 +54,13 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
               </Link>
             </li>
           )}
-        </ul>
+        </ul >
         <div className="cta">
           {isLoggedIn ? ( // if we have logined, display user image and logout button
             <>
               <img src={Cookies.get("profile_img")} alt="user" style={{height: 75, borderRadius: 50}}/>
               <Link to="/">
-                <button onClick={onLogout}>Logout</button>
+                <button className="buttonStyle" onClick={onLogout}>Logout</button>
               </Link>
             </>
           ) : ( 
