@@ -214,10 +214,10 @@ function dbEdit(task){
   let oldDesc = task.Desc;
   let newTitle = prompt("Enter the NEW Title (or blank to not change): "); // the new value for the "Title" column
   let newDesc = prompt("Enter the NEW users (or blank to not change)[seperated by commas]: ");  // the new value for the "Desc" column
-  if(newTitle===null){
+  if(newTitle===null || newTitle===""){
     newTitle = oldTitle;
   }
-  if(newDesc === null){
+  if(newDesc === null || newDesc===""){
     newDesc = oldDesc;
   }
   let input_query = `UPDATE Task SET \`Desc\` = '${newDesc}', \`Title\` = '${newTitle}' WHERE \`Title\` = '${oldTitle}'`;
