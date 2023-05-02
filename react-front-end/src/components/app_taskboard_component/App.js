@@ -383,39 +383,6 @@ function TaskTable({ tasks }) {
   );
 }
 
-// function TaskTable({ tasks }) {
-//   return (
-//     <div className="container p-4">
-//       <div>
-//         <h1 style={{ marginTop: 150 }}>Tasks Table</h1>
-//       </div>
-//       <table className="table table-bordered table-striped">
-//         <thead>
-//           <tr>
-//             <th>Title</th>
-//             <th>Priority</th>
-//             <th>Hours</th>
-//             <th>Users</th>
-//             <th>Due Date</th>
-//             <th>Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {tasks.map((task, index) => (
-//             <tr key={index}>
-//               <td>{task.Title}</td>
-//               <td>{task.Priority}</td>
-//               <td>{task.Hours}</td>
-//               <td>{task.Desc}</td>
-//               <td>{task.DueDate}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -432,13 +399,32 @@ function App() {
     ]);
   }
 
+
+  const [showTaskForm, setShowTaskForm] = useState(false);
+  const toggleTaskForm = () => {
+    setShowTaskForm(!showTaskForm);
+  };
+
   if (Cookies.get("authenticated") === "true") {
+    // return (
+    //   <div class="display-container">
+    //     <div class="Form">
+    //       <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
+    //     </div>
+    //     <div class="Table">
+    //       <TaskTable tasks={tasks} />
+    //     </div>
+    //   </div>
+    // );
     return (
-      <div class="display-container">
-        <div class="Form">
-          <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
-        </div>
-        <div class="Table">
+      <div className="display-container">
+        <button onClick={toggleTaskForm}>Toggle TaskForm</button>
+        {showTaskForm && (
+          <div className="Form">
+            <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} />
+          </div>
+        )}
+        <div className="Table">
           <TaskTable tasks={tasks} />
         </div>
       </div>

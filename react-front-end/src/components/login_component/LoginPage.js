@@ -63,7 +63,7 @@ function LoginPage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
         textAlign: "center",
       }}
     >
-      <h2 style={{ text: "center" }}>Login to Sprints with Google</h2>
+      {/* <h2 style={{ text: "center" }}>Login to Sprints with Google</h2>
       <br />
       <br />
       {profile.length !== 0 ? ( // if we have login, the profile should contain the object, which we display the user information
@@ -80,7 +80,7 @@ function LoginPage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
         <button onClick={() => login()}>Sign in with Google 🚀 </button>
         </div>
       )}
-        <CookieBanner />
+        <CookieBanner /> */}
     </div>
   );
 }

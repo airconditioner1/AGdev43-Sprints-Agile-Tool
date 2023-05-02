@@ -194,9 +194,3 @@ button btn2 {
   flex: 1 1 50%;
   background-color: rgba(0, 0, 255, 0.184);
 }
-th {
-  color: black;
-}
-th:hover {
-  color: blue;
-}

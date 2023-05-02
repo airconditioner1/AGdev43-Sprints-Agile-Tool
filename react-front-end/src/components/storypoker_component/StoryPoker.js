@@ -36,15 +36,15 @@ function StorypokerComp() {
 
 	const [updated, setUpdated] = useState(message);
 	
-	const [users, setUsers] = useState('');
+	//const [users, setUsers] = useState('');
   
 	const handleChange = (event) => {
 	  setMessage(event.target.value);
 	};
 
-	const handleUsers = (event) => {
-		setUsers(event.target.value);
-	};
+	// const handleUsers = (event) => {
+	// 	setUsers(event.target.value);
+	// };
   
 	const handleClick = () => {
 	  // 👇 "message" stores input field value
@@ -53,15 +53,23 @@ function StorypokerComp() {
 	  setUpdated(message);
 	  // alert("Your question is " + input)
 		createSP();
+		//submitQuestion();
 	};
 
 
 	const submitQuestion = () => {
 
-		console.log(assigned_users);
+		// 👇 "message" stores input field value
+		var input = document.getElementById("message").value;
+		question = input;
+		setUpdated(message);
+		// alert("Your question is " + input)
+		createSP();
+
+		//console.log(assigned_users);
 		console.log(message);
 		Cookies.set('message', message);
-		Cookies.set('assigned_users', assigned_users);
+		//Cookies.set('assigned_users', assigned_users);
 		console.log(Cookies.get('user_email'))
 		//TODO: make api call to flask to insert question
 		// alert("make flask sql queries: delete all, insert new records")
@@ -126,10 +134,10 @@ function StorypokerComp() {
 					placeholder='As <user>, I want to...'
 				/>
 				
-			<button style={{marginBottom:"2%"}} onClick={handleClick}>Confirm</button>
+			{/* <button style={{marginBottom:"2%"}} onClick={handleClick}>Confirm</button> */}
 
-			<h2 style={{marginBlock:"2%"}}>{"Current question: "+updated}</h2>
-			<h2>Assign Users to answer:</h2>
+			{/* <h2 style={{marginBlock:"2%"}}>{"Current question: "+updated}</h2> */}
+			{/* <h2>Assign Users to answer:</h2>
 
 			<input
 					type="text"
@@ -138,14 +146,14 @@ function StorypokerComp() {
 					onChange={handleUsers}
 					value={users}
 					placeholder='Enter user email one at a time: sally@sprints.com'
-				/>	  
+				/>	   */}
 			<div className="button-container">
 			</div>
 
 			{/* <h2 >Assigned Users: </h2> */}
 			
 			<Link to="/storypoker/question">
-					<button style={{width: "11rem"}} onClick={submitQuestion}>Present question</button>
+					<button style={{width: "11rem"}} onClick={submitQuestion }>Present question</button>
 			</Link>
 		</div>
 

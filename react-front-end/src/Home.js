@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./components/app_taskboard_component/App";
 import DummyPage from "./components/chatroom_component/Chatroom";
 import NavBar from "./components/navbar_component/NavBar";
-import Education from "./components/education_component/App"
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./components/login_component/LoginPage";
 import HomeScreen from "./components/home_component/HomeScreen";
@@ -14,7 +13,7 @@ import SignUp from "./components/login_component/Sign-up";
 import React, { useState, useEffect } from "react";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import SPChoice from "./components/storypoker_component/SPChoice";
-
+import Education from "./components/education_component/App"
 
 
 function Home() {
@@ -46,11 +45,11 @@ function Home() {
     <div className="homepage-container">
       <NavBar user={user} onLogout={logOut} profile={profile} isLoggedIn={isLoggedIn}/> 
       <Routes>
-        <Route path="/" element={<HomeScreen />}></Route>
+        <Route path="/" element={<HomeScreen setUser={setUser} user={user} setProfile={setProfile} profile={profile} setIsLoggedIn={setIsLoggedIn}/>}></Route>
         <Route path="/app-page" element={<App />}></Route>
         <Route path="/dummy-page" element={<DummyPage />}></Route>
         <Route path="/education-page" element={<Education />}></Route>
-        <Route path="/login-page" element={<LoginPage setUser={setUser} user={user} setProfile={setProfile} profile={profile} setIsLoggedIn={setIsLoggedIn}/>}></Route> // Pass setUser, user, profile setIsLoggedIn as a prop to LoginPage
+        {/* <Route path="/login-page" element={<LoginPage setUser={setUser} user={user} setProfile={setProfile} profile={profile} setIsLoggedIn={setIsLoggedIn}/>}></Route> // Pass setUser, user, profile setIsLoggedIn as a prop to LoginPage */}
         <Route exact path='/storypoker' element={<StoryPoker />} />
         <Route path='/storypoker/question' element={<QuestionPage/>} />
         <Route path='/storypoker/results' element={<ResultsPage/>} />
