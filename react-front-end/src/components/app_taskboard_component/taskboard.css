@@ -53,8 +53,8 @@ body {
 {
   letter-spacing: 1px;
   font-family: 'Kumbh Sans', sans-serif;
-  font-weight: 200;
-  font-size: small;
+  font-weight: 400;
+  font-size:small;
 
   cursor: pointer;
   background-color: #6ae687;
@@ -62,22 +62,41 @@ body {
   color: #002b64;
   border: 0;
   width: fit-content;
-/*   
-  margin: 10px 0 30px;
-  padding: 10px;
-  width: 100%; */
 
 }
 
+.btnDanger
+{
+  letter-spacing: 1px;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+  font-size: medium;
 
-/* .inc-exp-container {
-  background-color: #fff;
+  cursor: pointer;
+  background-color: #f63737;
   box-shadow: var(--box-shadow);
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-} */
+  color: #ffffff;
+  border: 0;
+  width: fit-content;
+
+}
+
+.sideBar
+{
+  letter-spacing: 1px;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 600;
+  font-size: medium;
+  /* transform:rotate(-90deg); */
+  cursor: pointer;
+  background-color: #f9deff;
+  /* box-shadow: var(--box-shadow); */
+  color: #002b64;
+  border: 0;
+  width: fit-content;
+
+}
+
 
 .inc-exp-container > div {
   flex: 1;
@@ -109,17 +128,6 @@ input[type="number"] {
   padding: 0;
   margin-bottom: 40px;
 }
-
-/* .list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-} */
 
 @media (max-width: 320px) {
   .container {

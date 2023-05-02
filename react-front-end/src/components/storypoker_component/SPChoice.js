@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 function SPChoice(){
   if (Cookies.get("authenticated") === "true") {
     return (
-      <div>
+      <div style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
         <div>
           <StoryPokerChoice />
         </div>
@@ -31,7 +31,8 @@ function StoryPokerChoice() {
 	}
 
   return (
-    <div className="component-div">
+    <div style={{ backgroundColor: " #f9deff", minHeight: "100vh" }}>
+    <div  className="component-div" >
       <h1>story poker</h1>
 
       <div className="button-container">
@@ -46,6 +47,7 @@ function StoryPokerChoice() {
         </button>
       </Link>
       </div>
+    </div>
     </div>
   );
 }

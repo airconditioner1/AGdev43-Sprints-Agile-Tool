@@ -61,8 +61,8 @@ function Homepage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
           <div class="horizontal-center" style={{
              backgroundColor: "#6ae6a7"
            }}>
-            <Link to="/app-page">
-            <button onClick={() => login()} className="button">Sign In </button>
+            <Link to="/">
+            <button onClick={() => login()} className="button">SIGN IN </button>
             </Link>
           </div>
       <img style={{ width: "100%", height: "100%", position: "relative" }} src={Description1 } />

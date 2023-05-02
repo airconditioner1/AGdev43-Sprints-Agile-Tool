@@ -349,7 +349,7 @@ function TaskTable({ tasks, onEditTask, onDeleteTask }) {
               </td>
               <td>
                 <button
-                  className="btn btn-danger"
+                  className="btnDanger"
                   onClick={() => handleDeleteTask(task)}
                 >
                   Delete
@@ -407,8 +407,8 @@ function App() {
 
   if (Cookies.get("authenticated") === "true") {
     return (
-      <div className="display-container">
-        <button onClick={toggleTaskForm}>Toggle TaskForm</button>
+      <div className="display-container" style={{ backgroundColor: " #f9deff", minHeight: "100vh" }} >
+        <button className="sideBar" onClick={toggleTaskForm}> Task Form > </button>
         {showTaskForm && (
           <div className="Form">
             <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} loadTasks={loadTasks} />
