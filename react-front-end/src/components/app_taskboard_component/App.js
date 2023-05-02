@@ -190,8 +190,8 @@ function TaskForm({ onSubmit, setTasks }) {
     <div className="container p-5">
       <form onSubmit={handleSubmit}>
         <div>
-          <p>Logged in: {Cookies.get("user_email")}</p>
-          <h1>Task Manager</h1>
+          {/* <p>Logged in: {Cookies.get("user_email")}</p> */}
+          <h1 className="h1">Task Form</h1>
           <br></br>
           <label
             style={{
@@ -200,6 +200,7 @@ function TaskForm({ onSubmit, setTasks }) {
               flexDirection: "column",
               textAlign: "center",
             }}
+            className="formstuff"
           >
             Title:
             <input
@@ -210,7 +211,7 @@ function TaskForm({ onSubmit, setTasks }) {
             />
           </label>
         </div>
-        <div className="form-side-container">
+        <div className="formstuff">
           <label>
             Priority:
             <select
@@ -223,7 +224,7 @@ function TaskForm({ onSubmit, setTasks }) {
               <option value="low">Low</option>
             </select>
           </label>
-          <label style={{marginLeft:30}}>
+          <label className="formstuff" style={{marginLeft:30}}>
             Due Date:
               <input style={{marginLeft:0}}
               title="Due Date"
@@ -237,7 +238,7 @@ function TaskForm({ onSubmit, setTasks }) {
           </label>
         </div>
         <div>
-          <label>
+          <label className="formstuff">
             Hours To Complete:
             <select
               className="form-control"
@@ -256,7 +257,7 @@ function TaskForm({ onSubmit, setTasks }) {
           </label>
         </div>
         <div>
-          <label>
+          <label className="formstuff">
             Users:
             <input
               type="text"
@@ -269,26 +270,26 @@ function TaskForm({ onSubmit, setTasks }) {
         </div>
         <div className="button-container">
           <button
-            className="btn btn-primary"
+            className="buttonStyle"
             type="submit"
             onClick={dbstuffSend}
           >
             Add Task
           </button>
           <button
-            className="btn btn-primary"
+            className="buttonStyle"
             onClick={dbDelete}
           >
             Delete Task
           </button>
           <button
-            className="btn btn-primary"
+            className="buttonStyle"
             onClick={dbEdit}
           >
             Modify Task
           </button>
           <button
-            className="btn btn-primary"
+            className="buttonStyle"
             style={{ margin: 10 }}
             onClick={loadTasks}
           >
@@ -339,29 +340,29 @@ function TaskTable({ tasks }) {
   });
 
   return (
-    <div className="container p-4">
+    <div className="container-fluid">
       <div>
-        <h1 style={{ marginTop: 150 }}>Tasks Table</h1>
+        <h1 className="h1" style={{ marginTop: 150 }}>Tasks Table</h1>
       </div>
-      <table className="table table-bordered table-striped">
+      <table margin="30px" className="table table-bordered">
         <thead>
           <tr>
-            <th onClick={() => sortTasks('Title')}>
+            <th className="formstuff" onClick={() => sortTasks('Title')}>
               Title {getSortIcon('Title')}
             </th>
-            <th onClick={() => sortTasks('Priority')}>
+            <th className="formstuff" onClick={() => sortTasks('Priority')}>
               Priority {getSortIcon('Priority')}
             </th>
-            <th onClick={() => sortTasks('Hours')}>
+            <th className="formstuff" onClick={() => sortTasks('Hours')}>
               Hours {getSortIcon('Hours')}
             </th>
-            <th onClick={() => sortTasks('Desc')}>
+            <th className="formstuff" onClick={() => sortTasks('Desc')}>
               Users {getSortIcon('Desc')}
             </th>
-            <th onClick={() => sortTasks('DueDate')}>
+            <th  className="formstuff" onClick={() => sortTasks('DueDate')}>
               Due Date {getSortIcon('DueDate')}
             </th>
-            <th onClick={() => sortTasks('Status')}>
+            <th className="formstuff" onClick={() => sortTasks('Status')}>
               Status {getSortIcon('Status')}
             </th>
           </tr>
@@ -369,12 +370,12 @@ function TaskTable({ tasks }) {
         <tbody>
           {sortedTasks.map((task, index) => (
             <tr key={index}>
-              <td>{task.Title}</td>
-              <td>{task.Priority}</td>
-              <td>{task.Hours}</td>
-              <td>{task.Desc}</td>
-              <td>{task.DueDate}</td>
-              <td>{task.Status}</td>
+              <td className="formstuff">{task.Title}</td>
+              <td className="formstuff">{task.Priority}</td>
+              <td className="formstuff">{task.Hours}</td>
+              <td className="formstuff">{task.Desc}</td>
+              <td className="formstuff">{task.DueDate}</td>
+              <td className="formstuff">{task.Status}</td>
             </tr>
           ))}
         </tbody>
