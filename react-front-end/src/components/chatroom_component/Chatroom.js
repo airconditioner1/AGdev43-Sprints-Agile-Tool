@@ -7,7 +7,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import "./chatroom.css";
 import { v4 as uuidv4 } from "uuid";
 
-const socket = io("http://10.140.29.146:3001"); // Replace with your server URL
+const socket = io("http://host.docker.internal:3001"); // Replace with your server URL
 
 const Chatroom = () => {
   const [messages, setMessages] = useState([]);

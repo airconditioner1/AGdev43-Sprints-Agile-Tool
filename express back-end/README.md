@@ -3,7 +3,7 @@ This folder houses the code to build an express server to run the chatroom funct
 
 # Quickstart
 To locally run the chatroom, clone this repository and in the folder containing the dockerfile, type in:
-`docker build express-agdev43 .`
+`docker build -t express-agdev43 .`
 This will build the docker image. Verify the image is build with `docker images` command.
 Run it with:
 `docker run -d -p 3001:3001 express-agdev43`

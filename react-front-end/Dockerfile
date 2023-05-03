@@ -16,4 +16,5 @@ RUN npm ci
 COPY . .
 
 # Starting our application
+RUN npm run build
 CMD npm start

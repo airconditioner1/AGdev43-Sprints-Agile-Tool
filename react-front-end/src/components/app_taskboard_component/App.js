@@ -148,7 +148,7 @@ function TaskForm({ onSubmit, setTasks, loadTasks }) {
               onChange={(event) => setHours(event.target.value)}
             >
               <option value="0">0</option>
-              <option value="0">1</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="5">5</option>
@@ -408,7 +408,7 @@ function App() {
   if (Cookies.get("authenticated") === "true") {
     return (
       <div className="display-container" style={{ backgroundColor: " #f9deff", minHeight: "100vh" }} >
-        <button className="sideBar" onClick={toggleTaskForm}> Task Form > </button>
+        <button className="sideBar" onClick={toggleTaskForm}> Task Form </button>
         {showTaskForm && (
           <div className="Form">
             <TaskForm setTasks={setTasks} onSubmit={handleTaskSubmit} loadTasks={loadTasks} />
