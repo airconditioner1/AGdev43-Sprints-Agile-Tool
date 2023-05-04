@@ -26,8 +26,22 @@ These are the current features of the product:
 6. chatroom (over same network only).
 
 
+# Docker 
+
+This repository requires an active connection to the csl database where there are 4 containers already running. We are yet to export these containers to outside the csl machine. These are: flask, ngrok (optional), phpmyadmin, sql server
+
+Clone this repository once the above is set up. Or, just clone it for chatroom and front-end functionality.
+
+After cloning, cd into the react front end folder and type
+`docker build -t frontend .`.\
+`docker run -it -p 3000:3000 --name rf frontend`
+
+This will run the front-end container. To make sure chatroom works, see that the url in chatroom.js is http://host.docker.internal:3001
+
+cd into the express back end folder and type in
+`docker build -t express .`
+`docker run -it -p 3001:3001 --name ex express`
+
+This will run everything. Now, just go to localhost:3000 in your web browser and you should be able to access the application.
+
 # Problems
-1. Story poker not yet connected to db
-2. chatroom only works on same netowork currently. Will have to host express server somewhere else for public access (maybe on csl docker but need to research)
-3. cookies sometimes act funny
-Update this section with known bugs, suggestions, problems etc.
