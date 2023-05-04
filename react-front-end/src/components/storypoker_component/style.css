@@ -1,8 +1,7 @@
-
 .h1SP {
   font-size: 45px;
   font-weight: bold;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   color: #201625;
   margin-top: 70px;
   margin-bottom: 20px;
@@ -12,7 +11,7 @@
 .h2SP {
   font-size: 30px;
   font-weight: bold;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   color: #5d0b89;
   margin-top: 25px;
   margin-bottom: 30px;
@@ -22,7 +21,7 @@
 .h2Results {
   font-size: 25;
   font-weight: bold;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   color: #2d0343;
   margin-top: 25px;
   margin-bottom: 30px;
@@ -63,7 +62,7 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
-.component-div{
+.component-div {
   margin-left: 20%;
   margin-right: 20%;
   display: flex;
@@ -84,12 +83,11 @@ button {
   margin-top: 3%;
 }
 
-.buttonStyleSP
-{
+.buttonStyleSP {
   letter-spacing: 1px;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 500;
-  font-size:large;
+  font-size: large;
   cursor: pointer;
   background-color: #5d0b89;
   box-shadow: var(--box-shadow);
@@ -97,15 +95,13 @@ button {
   border: 0;
   width: 250px;
   height: 100px;
-
 }
 
-.buttonNormalStyleSP
-{
+.buttonNormalStyleSP {
   letter-spacing: 1px;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 500;
-  font-size:large;
+  font-size: large;
   cursor: pointer;
   background-color: #5d0b89;
   box-shadow: var(--box-shadow);
@@ -113,5 +109,4 @@ button {
   margin-top: 20px;
   margin: 15px;
   width: fit-content;
-
 }

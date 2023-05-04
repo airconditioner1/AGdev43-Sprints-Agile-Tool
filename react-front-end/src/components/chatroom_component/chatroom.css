@@ -49,14 +49,14 @@
   }
 }
 
-.scrollauto-box{
+.scrollauto-box {
   max-height: 100%;
 }
 
 .h1SP {
   font-size: 45px;
   font-weight: bold;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   color: #f1dffa;
 
   margin-top: 70px;
@@ -66,19 +66,18 @@
 .h1 {
   letter-spacing: 10px;
   margin: 0;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 600;
   color: #fff;
   margin-top: 70px;
   margin-bottom: 20px;
 }
 
-.buttonStyleChat
-{
+.buttonStyleChat {
   letter-spacing: 1px;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 500;
-  font-size:large;
+  font-size: large;
   cursor: pointer;
   background-color: #f9deff;
   box-shadow: var(--box-shadow);
@@ -86,5 +85,4 @@
   margin-top: 20px;
   margin: 15px;
   width: fit-content;
-
 }

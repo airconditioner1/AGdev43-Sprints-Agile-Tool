@@ -6,25 +6,24 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import CookieBanner from "./CookieBanner";
 
-function LoginPage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
-  
- // Function enable Cookie and localSotrage, get the response from function useGooglelogin to update login status
- //using function setUser and setIsLoggedIn
+function LoginPage({ setUser, user, profile, setProfile, setIsLoggedIn }) {
+  // Function enable Cookie and localSotrage, get the response from function useGooglelogin to update login status
+  //using function setUser and setIsLoggedIn
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      Cookies.set("authenticated", 'true');
+      Cookies.set("authenticated", "true");
       console.log("LOGGED IN");
       setUser(codeResponse);
-      window.localStorage.setItem('user', JSON.stringify(codeResponse));
-      setIsLoggedIn(true)
+      window.localStorage.setItem("user", JSON.stringify(codeResponse));
+      setIsLoggedIn(true);
     },
     onError: (error) => console.log("Login Failed:", error),
   });
   // set the user information
   useEffect(() => {
     if (user) {
-      var data = JSON.parse(window.localStorage.getItem('user'));
-      if(data === null){
+      var data = JSON.parse(window.localStorage.getItem("user"));
+      if (data === null) {
         data = user;
       }
       // setUser(JSON.parse(window.localStorage.getItem('user')));
@@ -40,9 +39,9 @@ function LoginPage({ setUser, user, profile, setProfile,  setIsLoggedIn}) {
         )
         .then((res) => {
           setProfile(res.data);
-          localStorage.setItem("profile", res.data)
+          localStorage.setItem("profile", res.data);
           Cookies.set("user_email", res.data.email);
-          Cookies.set('authenticated', 'true')
+          Cookies.set("authenticated", "true");
           Cookies.set("profile_img", res.data.picture);
         })
         .catch((err) => console.log(err));

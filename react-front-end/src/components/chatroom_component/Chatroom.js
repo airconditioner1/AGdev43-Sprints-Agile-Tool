@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 // const socket = io("http://host.docker.internal:3001"); // Replace with your server URL
 // https://5cfc03dafcca.ngrok.app/
 
-const socket = io("https://5cfc03dafcca.ngrok.app"); 
+const socket = io("https://5cfc03dafcca.ngrok.app");
 
 const Chatroom = () => {
   const [messages, setMessages] = useState([]);
@@ -39,44 +39,43 @@ const Chatroom = () => {
 
   return (
     <div>
-
-    <div className="chatroom-container">
-      
-      <div className="chat-container">
-        
-        <div className="messages-box">
-        <ScrollToBottom >
-          <div className="scrollauto-box">
-            {messages.map((message, i) => (
-              <div
-                key={i}
-                style={{
-                  textAlign: message.sender === userId ? "right" : "left",
-                  marginBottom: "5px",
-                }}
-              >
-                <div
-                  className={`message-bubble ${
-                    message.sender === userId ? "sent" : "received"
-                  }`}
-                >
-                  {message.text}
-                </div>
+      <div className="chatroom-container">
+        <div className="chat-container">
+          <div className="messages-box">
+            <ScrollToBottom>
+              <div className="scrollauto-box">
+                {messages.map((message, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      textAlign: message.sender === userId ? "right" : "left",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    <div
+                      className={`message-bubble ${
+                        message.sender === userId ? "sent" : "received"
+                      }`}
+                    >
+                      {message.text}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollToBottom>
           </div>
-        </ScrollToBottom>
+          <form onSubmit={sendMessage}>
+            <input
+              type="text"
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+            />
+            <button className="buttonStyleChat" type="submit">
+              Send
+            </button>
+          </form>
         </div>
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-          />
-          <button className="buttonStyleChat" type="submit">Send</button>
-        </form>
       </div>
-    </div>
     </div>
   );
 };
@@ -85,13 +84,10 @@ function DummyPage() {
   console.log(Cookies.get("authenticated"));
   return (
     <div style={{ backgroundColor: " rgb(36, 10, 78)", minHeight: "100vh" }}>
-      <div className='component-div'>
-      <h1 className="h1">Chatroom</h1>
-      
-
+      <div className="component-div">
+        <h1 className="h1">Chatroom</h1>
       </div>
       <Chatroom />
-      
     </div>
   );
 }

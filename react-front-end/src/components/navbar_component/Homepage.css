@@ -28,7 +28,7 @@ nav ul li {
 nav ul li a {
   color: white;
   font-size: large;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   text-decoration: none;
 }
 
@@ -139,8 +139,8 @@ h6 {
   margin-top: 5px;
   margin-bottom: 10px;
 }
-.menu-wrap a:focus{
-  color:#6ae687;
+.menu-wrap a:focus {
+  color: #6ae687;
   font-weight: 600;
 }
 
@@ -164,14 +164,11 @@ h6 {
   max-height: 200px;
 }
 
-
-.buttonStyle
-{
-
+.buttonStyle {
   letter-spacing: 1px;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 600;
-  font-size:medium;
+  font-size: medium;
   background-color: #6ae687;
   box-shadow: var(--box-shadow);
   color: #002b64;
@@ -185,5 +182,4 @@ h6 {
   font-size: 18px;
   cursor: pointer;
   display: inline-block;
-
 }

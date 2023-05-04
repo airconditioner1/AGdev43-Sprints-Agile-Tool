@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
-
 /**
- * 
+ *
  * @param user: variable defined in homepage trace the user status based on login
  * @param onLogout: callback function defined in homepage to logout
  * @param profile: variable trace defined in homepage trace profile info
@@ -14,7 +13,6 @@ import { useHistory } from "react-router-dom";
  * @returns navbar display based on whether use is login in or not
  */
 function NavBar({ user, onLogout, profile, isLoggedIn }) {
-  
   return (
     <header>
       <nav className="navbar navbar-inverse fixed-left">
@@ -54,18 +52,23 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
               </Link>
             </li>
           )}
-        </ul >
+        </ul>
         <div className="cta">
           {isLoggedIn ? ( // if we have logined, display user image and logout button
             <>
-              <img src={Cookies.get("profile_img")} alt="user" style={{height: 75, borderRadius: 50}}/>
+              <img
+                src={Cookies.get("profile_img")}
+                alt="user"
+                style={{ height: 75, borderRadius: 50 }}
+              />
               <Link to="/">
-                <button className="buttonStyle" onClick={onLogout}>Logout</button>
+                <button className="buttonStyle" onClick={onLogout}>
+                  Logout
+                </button>
               </Link>
             </>
-          ) : ( 
-          <>
-          </>
+          ) : (
+            <></>
           )}
         </div>
       </nav>
@@ -74,4 +77,3 @@ function NavBar({ user, onLogout, profile, isLoggedIn }) {
 }
 
 export default NavBar;
-

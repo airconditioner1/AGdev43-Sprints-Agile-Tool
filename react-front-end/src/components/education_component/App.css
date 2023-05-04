@@ -1,7 +1,6 @@
 body {
-  
-  color: #F0F0F0;
-  font-family: 'Kumbh Sans', sans-serif;
+  color: #f0f0f0;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 600;
   font-size: 15pt;
 }
@@ -12,11 +11,10 @@ body {
   text-align: center;
 }
 
-
 .h1Heading {
   letter-spacing: 6px;
   margin: 0;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 600;
   font-size: 30pt;
   color: #000000;
@@ -26,7 +24,7 @@ body {
 .h1Agile {
   letter-spacing: 3px;
   margin: 0;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 400;
   color: #ffffff;
   margin-top: 15px;
@@ -36,7 +34,7 @@ body {
 .h1Devops {
   letter-spacing: 3px;
   margin: 0;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 400;
   color: #ffffff;
   margin-top: 15px;
@@ -56,19 +54,18 @@ ul {
 
 li {
   margin-bottom: 10px;
-  color: #F0F0F0;
+  color: #f0f0f0;
 }
 
 a {
   color: #91cdff;
   text-decoration: none;
 }
- 
+
 a:hover {
   color: #6ae687;
   text-decoration: underline;
-} 
-
+}
 
 .agileSection {
   padding: 5%;
